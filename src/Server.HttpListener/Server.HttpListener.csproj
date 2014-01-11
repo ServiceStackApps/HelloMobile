@@ -11,6 +11,8 @@
     <AssemblyName>Server.HttpListener</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <ProductVersion>12.0.0</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -65,7 +67,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ServiceModel\ServiceModel.csproj">
-      <Project>{467aab2b-f0b5-4df0-95ad-db8817affa98}</Project>
+      <Project>{467AAB2B-F0B5-4DF0-95AD-DB8817AFFA98}</Project>
       <Name>ServiceModel</Name>
     </ProjectReference>
   </ItemGroup>

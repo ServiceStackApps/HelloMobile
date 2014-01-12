@@ -7,7 +7,7 @@ using ServiceStack;
 
 namespace Client.Android.Pcl
 {
-    [Activity(Label = "TestPclNuGet.Android", MainLauncher = true, Icon = "@drawable/icon")]
+    [Activity(Label = "Client.Android.Pcl", MainLauncher = true, Icon = "@drawable/icon")]
     public class Activity1 : Activity
     {
         protected override void OnCreate(Bundle bundle)

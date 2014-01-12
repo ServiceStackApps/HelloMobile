@@ -19,27 +19,37 @@ This project contains example applications on the following platforms:
 Most clients make use of ServiceStack's new PCL support which are contained in the following NuGet packages:
 
   - ServiceStack.Interfaces.Pcl
-  	- PCL Profiles: iOS, Android, Windows8, .NET 4.5, Silverlight5, WP8
+    - PCL Profiles: iOS, Android, Windows8, .NET 4.5, Silverlight5, WP8
   - ServiceStack.Client.Pcl
-  	- PCL Profiles: iOS, Android, Windows8, .NET 4.5
-  	- Custom builds: Silverlight 5
- - ServiceStack.Text.Pcl
-  	- PCL Profiles: iOS, Android, Windows8, .NET 4.5
-  	- Custom builds: Silverlight 5
+    - PCL Profiles: iOS, Android, Windows8, .NET 4.5
+    - Custom builds: Silverlight 5
+  - ServiceStack.Text.Pcl
+    - PCL Profiles: iOS, Android, Windows8, .NET 4.5
+    - Custom builds: Silverlight 5
  
 Your DTO projects only need to reference **ServiceStack.Interfaces.Pcl** package whilst the service clients are contained within
-the **ServiceStack.Client.Pcl** NuGet package.    	
+the **ServiceStack.Client.Pcl** NuGet package. 
 
 As described above, only **ServiceStack.Interfaces.Pcl** supports most of the available PCL profiles. 
 Although this alone still enables great re-use thanks to ServiceStack's design of having most providers implementing interfaces, 
 which combined with DTO's having minimal dependencies, only a reference to ServiceStack.Interfaces is required to share any 
 higher-level functionality that consumes ServiceStack services across most platforms. 
 
-A greater level of binary-level re-usabiliy is enabled between iOS, Android, Windows8, .NET 4.5 platforms which are also 
+A greater level of binary-level reusability is enabled between iOS, Android, Windows8, .NET 4.5 platforms which are also 
 able to share concrete implementations and extension methods in their own applications portable libraries. 
 
 Other Supported platforms may still achieve source-level code-reuse by creating a stub project (compiled for their platform) 
 and linking to the existing source files. 
+
+### Sharing Server DTO's with Clients
+
+All client projects reference **ServiceStack.Interfaces.Pcl** package whilst ServiceStack's server projects still reference 
+the existing **ServiceStack.Interfaces** NuGet package. 
+
+To share the server DTO's in the  
+[ServiceModel](https://github.com/ServiceStack/Hello/tree/master/src/ServiceModel) project, a new stub 
+[ServiceModel.Pcl](https://github.com/ServiceStack/Hello/tree/master/src/ServiceModel.Pcl) PCL project was created that just links 
+to the existing source files and references the **ServiceStack.Interfaces.Pcl** NuGet package so can be referenced by all client projects.
 
 ## Run the ServiceStack Host
 
@@ -60,7 +70,7 @@ Check that it's up and running by going to: `http://localhost:81` in a web brows
 
 The Android example is contained in the [Client.Android.Pcl](https://github.com/ServiceStack/Hello/tree/master/src/Client.Android.Pcl) project.
 
-Xamarin.Android makes creating Android applicaitons with C# pretty trivial where you can visually design the UI from within VS.NET 
+Xamarin.Android makes creating Android applications with C# pretty trivial where you can visually design the UI from within VS.NET 
 using the in-built visual designer. The worst part about developing for Android is the very slow turn around times when running your application
 through the Android emulators. For this reason I recommend configuring and doing most of your development with the much faster 
 [x86 Emulator](http://docs.xamarin.com/guides/android/deployment,_testing,_and_metrics/configuring_the_x86_emulator/).
@@ -68,7 +78,7 @@ through the Android emulators. For this reason I recommend configuring and doing
 Xamarin's [Getting Started tutorial](http://docs.xamarin.com/guides/android/getting_started/hello,_world/) provides a great walkthrough 
 and overview of the concepts required in creating a simple Android app. 
 
-To creat our simple Hello World example, it as just a matter of:
+To create our simple Hello World example, it as just a matter of:
 
   1. Creating a new **Android Application** project
   2. Double-clicking `Resources\Layout\Main.axml` to bring up the visual designer
@@ -89,7 +99,7 @@ var lblResults = FindViewById<TextView>(Resource.Id.lblResults);
 
 With references to the controls you can begin to hook up custom handlers to the exposed C# events.
 
-For our example we're just going to explore the different call-styles available for consuming ServiceStack webservices.
+For our example we're just going to explore the different call-styles available for consuming ServiceStack web services.
 To do this we just need create an instance of a `JsonServiceClient` and give it the base url where ServiceStack is hosted:
 
 ```csharp
@@ -139,8 +149,8 @@ btnAwait.Click += async delegate {
 
 #### Using manual Task extensions
 
-Some compiler magic is used to make the above async code work which has the disadvantage that the `async` keyword needs to propogated up in all call-sites.
-Given this you may prefer instead to make async calls with the Promise-like call-style API also avaialble on the returned `Task<T>` response. 
+Some compiler magic is used to make the above async code work which has the disadvantage that the `async` keyword needs to propagated up in all call-sites.
+Given this you may prefer instead to make async calls with the Promise-like call-style API also available on the returned `Task<T>` response. 
 
 We've added some custom task extensions to make this as easy as:
 
@@ -293,13 +303,11 @@ The Async/Await code is easier than iOS as you can add the `async` modifier dire
 ```csharp
 private async void btnAwait_Click(object sender, RoutedEventArgs e)
 {
-    try
-    {
+    try {
         var response = await client.GetAsync(new Hello { Name = txtName.Text });
         lblResults.Text = response.Result;
     }
-    catch (Exception ex)
-    {
+    catch (Exception ex) {
         lblResults.Text = ex.ToString();
     }
 }
@@ -323,7 +331,44 @@ private void btnAsync_Click(object sender, RoutedEventArgs e)
 The WPF development experience is very similar to the Windows Store app, where even the source code for declaring and implementing the button event handlers is exactly the same.
 The only difference is that the Main window is called **MainWindow.xaml** instead of **MainPage.xaml**.
 
-## [Silverlight5 Client](https://github.com/ServiceStack/Hello/tree/master/src/Client.Sl5)
+## [Silverlight 5 Client](https://github.com/ServiceStack/Hello/tree/master/src/Client.Sl5)
 
-[![WPF Screenshot](https://raw2.github.com/ServiceStack/Hello/master/screenshots/clients-silverlight.png)](https://github.com/ServiceStack/Hello/tree/master/src/Client.Sl5)
+[![Silverlight 5 Screenshot](https://raw2.github.com/ServiceStack/Hello/master/screenshots/clients-silverlight.png)](https://github.com/ServiceStack/Hello/tree/master/src/Client.Sl5)
+
+The Silverlight project is different to the other clients in a couple of ways, firstly whilst it references the same `*.Pcl` packages, 
+it makes use of Silverlight-specific **ServiceStack.Text.dll** and **ServiceStack.Client.dll** builds which aren't binary compatible 
+with the other client platforms, so any high-level projects that use these impl dlls can't be shared with other PCL projects.
+
+Another difference when creating a new Silverlight Application is that it also creates a separate 
+[Client.Sl5.Web](https://github.com/ServiceStack/Hello/tree/master/src/Client.Sl5.Web) web deployment project where the 
+compiled `Client.Sl5.xap` Silverlight deployment package gets hosted from. As this package is executed within the context 
+of a web browser it must also comply with browser limitations like CORS limitations. To enable communication with our remote 
+ServiceStack instance, the `CorsFeature` Plugin and **clientaccesspolicy.xml** and **crossdomain.xml** permissions were added 
+to the ServiceStack hosts.
+
+A limitation in Silverlgiht is that only Asynchronous API's are supported, but like the previous XAML-based Windows Store and WPF clients, 
+the source code remains exactly the same:
+
+```csharp
+private async void btnAwait_Click(object sender, RoutedEventArgs e)
+{
+    try {
+        var response = await client.GetAsync(new Hello { Name = txtName.Text });
+        lblResults.Content = response.Result;
+    }
+    catch (Exception ex) {
+        lblResults.Content = ex.ToString();
+    }
+}
+```
+
+```csharp
+private void btnAsync_Click(object sender, RoutedEventArgs e)
+{
+    client.GetAsync(new Hello { Name = txtName.Text })
+        .Success(r => lblResults.Content = r.Result)
+        .Error(ex => lblResults.Content = ex.ToString());
+}
+```
+
 

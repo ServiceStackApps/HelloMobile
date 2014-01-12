@@ -1,8 +1,8 @@
 Hello ServiceStack!
 ===================
 
-This project shows a number of different .NET clients communicating with a back-end ServiceStack HttpListener or ASP.NET Host server 
-using the Sync, Task-based Async and C# async/await APIs in [ServiceStack's typed .NET clients](https://github.com/ServiceStack/ServiceStack/wiki/C%23-client).
+This project shows a number of different .NET clients applications communicating with ServiceStack back-end services
+using the Sync, Task-based Async and C# async/await APIs, available in [ServiceStack's typed .NET clients](https://github.com/ServiceStack/ServiceStack/wiki/C%23-client).
 
 ### Client Applications
 
@@ -27,29 +27,29 @@ Most clients make use of ServiceStack's new PCL support which are contained in t
   	- PCL Profiles: iOS, Android, Windows8, .NET 4.5
   	- Custom builds: Silverlight 5
 
-As described above, only **ServiceStack.Interfaces.Pcl** supports most of the PCL profiles available. 
+As described above, only **ServiceStack.Interfaces.Pcl** supports most of the available PCL profiles. 
 Although this alone still enables great re-use thanks to ServiceStack's design of having most providers implementing interfaces, 
-which combined with DTO's only requiring a reference to ServiceStack.Interfaces allows sharing of any higher-level functionality 
-utilizing the Service Client interfaces and DTO's across most platforms. 
+which combined with DTO's having minimal dependencies, only a reference to ServiceStack.Interfaces is required to share any 
+higher-level functionality that consumes ServiceStack services across most platforms. 
 
-A greater level of binary-level re-usabiliy is enabled between iOS, Android, Windows8, .NET 4.5 platforms which are also share 
-concrete implementations like extension methods in their applications portable libraries. 
+A greater level of binary-level re-usabiliy is enabled between iOS, Android, Windows8, .NET 4.5 platforms which are also 
+able to share concrete implementations and extension methods in their own applications portable libraries. 
 
-Other Supported platforms may still achieve code-reuse with source-level compatibility by creating a stub project 
-(compiled for their platform) and linking to the existing source files. 
+Other Supported platforms may still achieve source-level code-reuse by creating a stub project (compiled for their platform) 
+and linking to the existing source files. 
 
 ## Run the ServiceStack Host
 
 All client examples below expect to connect a ServiceStack service instance hosted on **http://localhost:81**. 
 
-Included in the repo is both a simple ASP.NET and HttpListener ServiceStack Hosts, both with CORS enabled (required for Silverlight clients).
+Also included in the repo is an ASP.NET and HttpListener simple ServiceStack Hosts, both with CORS enabled (required for Silverlight clients).
 
-The easiest way to start a ServiceStack host is to build the **Server.HttpListener** project and double-click on the resulting **Server.HttpListener.exe** binary, 
+The easiest way to start a ServiceStack host is to build the **Server.HttpListener** project, then double-click on the resulting **Server.HttpListener.exe** binary, 
 or for OSX/Linux using mono:
 
     sudo mono Server.HttpListener.exe
 
-To check that it's running go to: `http://localhost:81` in a web browser.
+Check that it's up and running by going to: `http://localhost:81` in a web browser.
 
 ## Xamarin.Android
 
@@ -57,21 +57,22 @@ To check that it's running go to: `http://localhost:81` in a web browser.
 
 The Android example is contained in the [Client.Android.Pcl](https://github.com/ServiceStack/Hello/tree/master/src/Client.Android.Pcl) project.
 
-Xamarin.Android makes creating Android applicaitons with C# pretty trivial in which you can visually design the UI from within VS.NET 
-using the in-built visual designer. The worst part about developing for Android are the very slow turn around times or running your application
+Xamarin.Android makes creating Android applicaitons with C# pretty trivial where you can visually design the UI from within VS.NET 
+using the in-built visual designer. The worst part about developing for Android is the very slow turn around times when running your application
 through the Android emulators. For this reason I recommend configuring and doing most of your development with the much faster 
 [x86 Emulator](http://docs.xamarin.com/guides/android/deployment,_testing,_and_metrics/configuring_the_x86_emulator/).
 
 Xamarin's [Getting Started tutorial](http://docs.xamarin.com/guides/android/getting_started/hello,_world/) provides a great walkthrough 
-and covering the concepts required in creating a simple Android app. 
+and overview of the concepts required in creating a simple Android app. 
 
-For our simple Hello World example it's simply a matter of:
+To creat our simple Hello World example, it as just a matter of:
 
-  1. Double-clicking `Resources\Layout\Main.axml` to bring up the visual designer
-  2. Dragging the Label (TextView), TextBox (EditText) and Button Widgets onto the canvas
-  3. Providing an id for each widget, e.g in the format `@+id/txtName`
+  1. Creating a new **Android Application** project
+  2. Double-clicking `Resources\Layout\Main.axml` to bring up the visual designer
+  3. Dragging the Label (TextView), TextBox (EditText) and Button Widgets onto the canvas to creat the UI
+  4. Providing an id for each widget, e.g in the format `@+id/txtName`
 
-After building the project the id's are materialized into C# constants in the `Resource.Id.*` nested classes which you can use 
+After building the project the id's are materialized into C# constants, available in the `Resource.Id.*` nested classes which you can use 
 in the custom `Activity.OnCreate()` method in your [Activity1.cs](https://github.com/ServiceStack/Hello/blob/master/src/Client.Android.Pcl/Activity1.cs) 
 to access the UI controls, e.g:
 
@@ -83,9 +84,9 @@ var txtName = FindViewById<EditText>(Resource.Id.txtName);
 var lblResults = FindViewById<TextView>(Resource.Id.lblResults);
 ```
 
-With references to the controls you can begin to hook up custom handlers with the exposed C# events.
+With references to the controls you can begin to hook up custom handlers to the exposed C# events.
 
-For our example we're just going to explore the different call-styles available for calling the same ServiceStack web service.
+For our example we're just going to explore the different call-styles available for consuming ServiceStack webservices.
 To do this we just need create an instance of a `JsonServiceClient` and give it the base url where ServiceStack is hosted:
 
 ```csharp
@@ -97,7 +98,8 @@ we need to use the special **10.0.2.2** alias. Other special device IP's can be 
 
 ### Calling ServiceStack services
 
-From then on calling ServiceStack services is the same [C# Client](https://github.com/ServiceStack/ServiceStack/wiki/C%23-client), e.g. you can use the Sync APIs:
+From then on calling ServiceStack services is the same as any other [C# Client](https://github.com/ServiceStack/ServiceStack/wiki/C%23-client), 
+E.g. you can call the Sync APIs with:
 
 ```csharp
 btnSync.Click += delegate {
@@ -111,14 +113,14 @@ btnSync.Click += delegate {
 };
 ```
 
-This registers a click handler to the 'Sync' button which uses the JsonServiceClient to make a synchronous call to the **Hello** ServiceStack WebService. 
-The client returns a typed 'HelloResponse' response which can be assigned directly to the **lblResults** UI widget.
+This registers a click handler on the 'Sync' button that uses the JsonServiceClient to make a synchronous call to the **Hello** ServiceStack WebService. 
+The returned typed 'HelloResponse' response can be directly assigned to the **lblResults** UI widget.
 
 #### Using C#'s async/await feature
 
-Commonly you would want to make asynchronous network calls to keep the UI responsive whilst you're waiting for the response. 
-Thanks to C#'s async/await feature converting it is trivial which just involves adding the **async** keyword modifier to the delegate signature 
-and then awaiting the equivalent `GetAsync` method on the Service Client, e.g:
+Commonly you should prefer making asynchronous network calls to keep the UI responsive whilst waiting for the response. 
+Thanks to C#'s async/await feature converting to async is trivial which just involves adding the **async** keyword modifier to the delegate signature 
+and then awaiting the `GetAsync` method on the Service Client, e.g:
 
 ```csharp
 btnAwait.Click += async delegate {
@@ -134,10 +136,10 @@ btnAwait.Click += async delegate {
 
 #### Using manual Task handlers
 
-A bit of compiler magic is used to make the above async code work which has the disadvantage that the `async` keyword needs to propogated up in all call-sites.
-For these reasons you may prefer to instead make async calls with a Promise-like API that's also avaialble on the returned `Task<T>` response. 
+Some compiler magic is used to make the above async code work which has the disadvantage that the `async` keyword needs to propogated up in all call-sites.
+For these reasons you may prefer to instead make async calls with a Promise-like API that's another call-style avaialble on the returned `Task<T>` response. 
 
-We've added some of our own task extensions to make this a little easier, e.g:
+We've added some of our own task extensions to make this as easy as:
 
 ```csharp
 btnAsync.Click += delegate {

@@ -54,7 +54,7 @@ or for OSX/Linux using mono:
 
 Check that it's up and running by going to: `http://localhost:81` in a web browser.
 
-## Xamarin.Android
+## [Xamarin.Android Client](https://github.com/ServiceStack/Hello/tree/master/src/Client.Android.Pcl)
 
 [![Android Screenshot](https://raw2.github.com/ServiceStack/Hello/master/screenshots/clients-android.png)](https://github.com/ServiceStack/Hello/tree/master/src/Client.Android.Pcl)
 
@@ -156,7 +156,7 @@ The `Success` extension method unwraps the response for successful calls whilst 
 AggregateException, otherwise it passes it through untouched.
 
 
-## Xamarin.iOS
+## [Xamarin.iOS Client](https://github.com/ServiceStack/Hello/tree/master/src/Client.iOS)
 
 [![iPhone Screenshot](https://raw2.github.com/ServiceStack/Hello/master/screenshots/clients-ios.png)](https://github.com/ServiceStack/Hello/tree/master/src/Client.iOS)
 
@@ -253,7 +253,77 @@ partial void btnAsync_Click (NSObject sender)
 }
 ```
 
-## Windows Store App
+## [Windows 8 Store Client](https://github.com/ServiceStack/Hello/tree/master/src/Client.WinStore.Pcl)
 
 [![Windows Store Screenshot](https://raw2.github.com/ServiceStack/Hello/master/screenshots/clients-winstore.png)](https://github.com/ServiceStack/Hello/tree/master/src/Client.WinStore.Pcl)
+
+If you've done any previous XAML development, Visual Studio provides a great Development experience for Windows 8 with fast iteration times and a great debugging experience.
+The one annoyance is a result of Windows Apps taking up the entire screen making it tedious to switch between the running app and debugging environment.
+
+Other than that, developing apps is as straight forward as it can be, just double click the `MainPage.xaml` file to open it in the designer where you can drag on UI Elements to create the UI.
+Like most VS.NET visual designers you can simply double-click a button to add an event handler. To access controls in the code-behind file you just need to assign each a name in either the
+property grid or by directly editing the XAML source.
+
+Unlike debugging Android and iOS devices, Windows Store Apps lets you use `localhost` to reference your local dev workstation that you can use to refer to your running ServiceStack instance, e.g:
+
+```csharp
+client = new JsonServiceClient("http://localhost:81/");
+```
+
+Implementing a click event is just a matter of double-clicking the UI Button and filling in the blank with your implementation, which remains the same for the Synchronous API:
+
+```csharp
+private void btnSync_Click(object sender, RoutedEventArgs e)
+{
+    try
+    {
+        var response = client.Get(new Hello { Name = txtName.Text });
+        lblResults.Text = response.Result;
+    }
+    catch (Exception ex)
+    {
+        lblResults.Text = ex.ToString();
+    }
+}
+
+```
+
+The Async/Await code is easier than iOS as you can add the `async` modifier directly on the click event signature:
+
+```csharp
+private async void btnAwait_Click(object sender, RoutedEventArgs e)
+{
+    try
+    {
+        var response = await client.GetAsync(new Hello { Name = txtName.Text });
+        lblResults.Text = response.Result;
+    }
+    catch (Exception ex)
+    {
+        lblResults.Text = ex.ToString();
+    }
+}
+```
+
+The Task-based example is also implemented as expected:
+
+```csharp
+private void btnAsync_Click(object sender, RoutedEventArgs e)
+{
+    client.GetAsync(new Hello { Name = txtName.Text })
+        .Success(r => lblResults.Text = r.Result)
+        .Error(ex => lblResults.Text = ex.ToString());
+}
+```
+
+## [WPF Client](https://github.com/ServiceStack/Hello/tree/master/src/Client.Wpf.Pcl)
+
+[![WPF Screenshot](https://raw2.github.com/ServiceStack/Hello/master/screenshots/clients-wpf.png)](https://github.com/ServiceStack/Hello/tree/master/src/Client.Wpf.Pcl)
+
+The WPF development experience is very similar to the Windows Store app, where even the source code for declaring and implementing the button event handlers is exactly the same.
+The only difference is that the Main window is called **MainWindow.xaml** instead of **MainPage.xaml**.
+
+## [Silverlight5 Client](https://github.com/ServiceStack/Hello/tree/master/src/Client.Sl5)
+
+[![WPF Screenshot](https://raw2.github.com/ServiceStack/Hello/master/screenshots/clients-silverlight.png)](https://github.com/ServiceStack/Hello/tree/master/src/Client.Sl5)
 

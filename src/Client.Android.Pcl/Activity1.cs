@@ -48,11 +48,11 @@ namespace Client.Android.Pcl
                     .Error(ex => lblResults.Text = ex.ToString());
             };
 
-            btnAwait.Click += delegate
+            btnAwait.Click += async delegate
             {
                 try
                 {
-                    var response = client.Get(new Hello { Name = txtName.Text });
+                    var response = await client.GetAsync(new Hello { Name = txtName.Text });
                     lblResults.Text = response.Result;
                 }
                 catch (Exception ex)

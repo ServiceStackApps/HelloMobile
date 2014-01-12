@@ -20,12 +20,15 @@ Most clients make use of ServiceStack's new PCL support which are contained in t
 
   - ServiceStack.Interfaces.Pcl
   	- PCL Profiles: iOS, Android, Windows8, .NET 4.5, Silverlight5, WP8
-  - ServiceStack.Text.Pcl
-  	- PCL Profiles: iOS, Android, Windows8, .NET 4.5
-  	- Custom builds: Silverlight 5
   - ServiceStack.Client.Pcl
   	- PCL Profiles: iOS, Android, Windows8, .NET 4.5
   	- Custom builds: Silverlight 5
+ - ServiceStack.Text.Pcl
+  	- PCL Profiles: iOS, Android, Windows8, .NET 4.5
+  	- Custom builds: Silverlight 5
+ 
+Your DTO projects only need to reference **ServiceStack.Interfaces.Pcl** package whilst the service clients are contained within
+the **ServiceStack.Client.Pcl** NuGet package.    	
 
 As described above, only **ServiceStack.Interfaces.Pcl** supports most of the available PCL profiles. 
 Although this alone still enables great re-use thanks to ServiceStack's design of having most providers implementing interfaces, 
@@ -69,7 +72,7 @@ To creat our simple Hello World example, it as just a matter of:
 
   1. Creating a new **Android Application** project
   2. Double-clicking `Resources\Layout\Main.axml` to bring up the visual designer
-  3. Dragging the Label (TextView), TextBox (EditText) and Button Widgets onto the canvas to creat the UI
+  3. Dragging the Label (TextView), TextBox (EditText) and Button Widgets onto the canvas to create the UI
   4. Providing an id for each widget, e.g in the format `@+id/txtName`
 
 After building the project the id's are materialized into C# constants, available in the `Resource.Id.*` nested classes which you can use 
@@ -134,12 +137,12 @@ btnAwait.Click += async delegate {
 };
 ```
 
-#### Using manual Task handlers
+#### Using manual Task extensions
 
 Some compiler magic is used to make the above async code work which has the disadvantage that the `async` keyword needs to propogated up in all call-sites.
-For these reasons you may prefer to instead make async calls with a Promise-like API that's another call-style avaialble on the returned `Task<T>` response. 
+Given this you may prefer instead to make async calls with the Promise-like call-style API also avaialble on the returned `Task<T>` response. 
 
-We've added some of our own task extensions to make this as easy as:
+We've added some custom task extensions to make this as easy as:
 
 ```csharp
 btnAsync.Click += delegate {
@@ -149,8 +152,45 @@ btnAsync.Click += delegate {
 };
 ```
 
+The `Success` extension method unwraps the response for successful calls whilst the `Error` extension method unwraps single exceptions from any thrown
+AggregateException, otherwise it passes it through untouched.
+
+
 ## Xamarin.iOS
 
 [![iPhone Screenshot](https://raw2.github.com/ServiceStack/Hello/master/screenshots/clients-ios.png)](https://github.com/ServiceStack/Hello/tree/master/src/Client.iOS)
+
+
+The [iOS Client](https://github.com/ServiceStack/Hello/tree/master/src/Client.iOS) is the only project in this solution not created with VS.NET. 
+
+Whilst it's possible to develop 
+[iOS Apps in VS.NET](http://docs.xamarin.com/guides/ios/getting_started/introduction_to_xamarin_ios_for_visual_studio/), 
+it requires a configured build server running on OSX fot it to work. 
+
+As OSX is always required and it has less moving parts, I recommend developing iOS Apps with Xamarin Studio on OSX which has the advantage of being able to use 
+XCode's native Interface Builder to design your UI.
+
+If this is the first time using Xamarin Studio then you'd want to first 
+[install the NuGet Addin for MonoDevelop](http://barambani.wordpress.com/2013/10/07/add-nuget-package-manager-and-servicestack-to-xamarin-studio-projects-2/)
+which will allow you to add NuGet packages to your project as you're used to within VS.NET. From there just search and add the **ServiceStack.Client.Pcl**
+NuGet package to your iOS project.
+
+As they have with Android, Xamarin have a good [getting started with Xamarin.iOS tutorial](http://docs.xamarin.com/guides/ios/getting_started/hello,_world/) 
+which goes through a simple example of creating an iOS App. 
+
+To create our simple Hello World app:
+
+  1. Create a new iPhone **Single View Application** project
+  2. Double-click on the file ending with `*ViewController.xib` to open it in Xcode's Interface Builder
+  3. Drag the Label, TextBox and Button Widgets onto the iPhone canvas to create the UI
+  4. Open Interface builder in [split screen mode](http://docs.xamarin.com/guides/ios/getting_started/hello,_world/#Outlets_Actions_Defined) to view the UI and the `*.h` file side-by-side 
+  5. Ctrl + click TextBox UI and Results Label UI elements onto the top of Obj-c `*.h` file to [create new Outlets](http://docs.xamarin.com/guides/ios/getting_started/hello,_world/#Adding_an_Outlet)
+  6. Ctrl + click the Buttons and drag into the middle of the Obj-c `*.h` file to [create new Actions](http://docs.xamarin.com/guides/ios/getting_started/hello,_world/#Adding_an_Action) for each button
+
+After hooking up each UI Widget, save the file and switch back to Xamarin Studio to see each element available in the code-behind 
+[ViewController.designer.cs](https://github.com/ServiceStack/Hello/blob/master/src/Client.iOS/Client_iOSViewController.designer.cs) file. 
+Any Outlets defined are exposed as properties whilst any Actions are available as partial methods.
+
+With all the elements and actions in place you can start add your C# implementation in your main [*ViewController.cs](https://github.com/ServiceStack/Hello/blob/master/src/Client.iOS/Client_iOSViewController.cs) file.
 
 

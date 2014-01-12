@@ -165,7 +165,7 @@ The [iOS Client](https://github.com/ServiceStack/Hello/tree/master/src/Client.iO
 
 Whilst it's possible to develop 
 [iOS Apps in VS.NET](http://docs.xamarin.com/guides/ios/getting_started/introduction_to_xamarin_ios_for_visual_studio/), 
-it requires a configured build server running on OSX fot it to work. 
+it requires a configured build server running on OSX for it to work. 
 
 As OSX is always required and it has less moving parts, I recommend developing iOS Apps with Xamarin Studio on OSX which has the advantage of being able to use 
 XCode's native Interface Builder to design your UI.
@@ -181,16 +181,79 @@ which goes through a simple example of creating an iOS App.
 To create our simple Hello World app:
 
   1. Create a new iPhone **Single View Application** project
-  2. Double-click on the file ending with `*ViewController.xib` to open it in Xcode's Interface Builder
+  2. Double-click on the file ending `*ViewController.xib` to open it in XCode's Interface Builder
   3. Drag the Label, TextBox and Button Widgets onto the iPhone canvas to create the UI
   4. Open Interface builder in [split screen mode](http://docs.xamarin.com/guides/ios/getting_started/hello,_world/#Outlets_Actions_Defined) to view the UI and the `*.h` file side-by-side 
   5. Ctrl + click TextBox UI and Results Label UI elements onto the top of Obj-c `*.h` file to [create new Outlets](http://docs.xamarin.com/guides/ios/getting_started/hello,_world/#Adding_an_Outlet)
-  6. Ctrl + click the Buttons and drag into the middle of the Obj-c `*.h` file to [create new Actions](http://docs.xamarin.com/guides/ios/getting_started/hello,_world/#Adding_an_Action) for each button
+  6. Ctrl + click each UI Button and drag it into the middle of the Obj-c `*.h` file to [create new Actions](http://docs.xamarin.com/guides/ios/getting_started/hello,_world/#Adding_an_Action)
 
 After hooking up each UI Widget, save the file and switch back to Xamarin Studio to see each element available in the code-behind 
 [ViewController.designer.cs](https://github.com/ServiceStack/Hello/blob/master/src/Client.iOS/Client_iOSViewController.designer.cs) file. 
 Any Outlets defined are exposed as properties whilst any Actions are available as partial methods.
 
-With all the elements and actions in place you can start add your C# implementation in your main [*ViewController.cs](https://github.com/ServiceStack/Hello/blob/master/src/Client.iOS/Client_iOSViewController.cs) file.
+With all elements and actions in place you can start add your C# implementation in your main [*ViewController.cs](https://github.com/ServiceStack/Hello/blob/master/src/Client.iOS/Client_iOSViewController.cs) file.
 
+The first line of code is to register the PCL Provider for iOS, normally this is automatically inferred but as it sometimes doesn't get picked up for iOS, it's recommended to explicitly register it with:
+
+```csharp
+IosPclExportClient.Configure();
+```
+
+Calling the service is similar to Android where instead of using `localhost` you need to use an IP Address for your local dev machine where ServiceStack is running. 
+You can use the `ifconfig` command line utility in OSX to find out what the network IP of your dev workstation is, e.g `10.0.0.8`:
+
+```csharp
+client = new JsonServiceClient("http://10.0.0.8:81/");
+```
+
+The IB Outlets are automatically populated into their typed properties whilst actions are handled by implementing their partial method signatures
+which are declared in the ViewController's code-behind generated file. Other than that, the implementation itself is similar to the other clients, i.e: 
+
+```csharp
+partial void btnSync_Click (NSObject sender)
+{
+    try {
+        var response = client.Get(new Hello { Name = txtName.Text });
+        lblResults.Text = response.Result;
+    }
+    catch (Exception ex) {
+        lblResults.Text = ex.ToString();
+    }
+}
+```
+
+As you can't change the signature of partial methods, to take advantage of C#'s async/await feature you'll need to delegate it into a new method that you can apply the `async` modifier to, e.g:
+
+```csharp
+partial void btnAwait_Click (NSObject sender)
+{
+    AwaitClick();
+}
+
+private async void AwaitClick()
+{
+    try {
+        var response = await client.GetAsync(new Hello { Name = txtName.Text });
+        lblResults.Text = response.Result;
+    }
+    catch (Exception ex) {
+        lblResults.Text = ex.ToString();
+    }
+}
+```
+
+Whilst calling the Task-based API remains just as straight-forward:
+
+```csharp
+partial void btnAsync_Click (NSObject sender)
+{
+    client.GetAsync(new Hello { Name = txtName.Text })
+        .Success(response => lblResults.Text = response.Result)
+        .Error(ex => lblResults.Text = ex.ToString());
+}
+```
+
+## Windows Store App
+
+[![Windows Store Screenshot](https://raw2.github.com/ServiceStack/Hello/master/screenshots/clients-winstore.png)](https://github.com/ServiceStack/Hello/tree/master/src/Client.WinStore.Pcl)
 

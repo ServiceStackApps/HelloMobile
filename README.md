@@ -6,6 +6,8 @@ using the Sync, Task-based Async and C# async/await APIs, available in [ServiceS
 
 ### Client Applications
 
+![Supported Client Platforms](https://raw2.github.com/ServiceStack/Hello/master/screenshots/portable-splash-900.png)
+
 This project contains example applications on the following platforms:
 
   - Xamarin.iOS

@@ -136,6 +136,12 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ServiceModel.Pcl\ServiceModel.Pcl.csproj">
+      <Project>{aaa629ed-e575-4308-9f3d-a851a16748c1}</Project>
+      <Name>ServiceModel.Pcl</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
     <Reference Include="ServiceStack.Client, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\ServiceStack.Client.Pcl.4.0.6\lib\win\ServiceStack.Client.dll</HintPath>
@@ -152,12 +158,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\ServiceStack.Text.Pcl.4.0.6\lib\portable-net45+win8+monotouch+monoandroid\ServiceStack.Text.dll</HintPath>
     </Reference>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\ServiceModel.Pcl\ServiceModel.Pcl.csproj">
-      <Project>{aaa629ed-e575-4308-9f3d-a851a16748c1}</Project>
-      <Name>ServiceModel.Pcl</Name>
-    </ProjectReference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '11.0' ">
     <VisualStudioVersion>11.0</VisualStudioVersion>

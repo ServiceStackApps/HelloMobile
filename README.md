@@ -168,12 +168,12 @@ The `Success` extension method unwraps the response for successful calls whilst 
 AggregateException, otherwise it passes it through untouched.
 
 
-## [Xamarin.iOS Client](https://github.com/ServiceStack/Hello/tree/master/src/Client.iOS)
+## [Xamarin.iOS Client](https://github.com/ServiceStack/Hello/tree/master/src/Client.iOS.Pcl)
 
-[![iPhone Screenshot](https://raw2.github.com/ServiceStack/Hello/master/screenshots/clients-ios.png)](https://github.com/ServiceStack/Hello/tree/master/src/Client.iOS)
+[![iPhone Screenshot](https://raw2.github.com/ServiceStack/Hello/master/screenshots/clients-ios.png)](https://github.com/ServiceStack/Hello/tree/master/src/Client.iOS.Pcl)
 
 
-The [iOS Client](https://github.com/ServiceStack/Hello/tree/master/src/Client.iOS) is the only project in this solution not created with VS.NET. 
+The [iOS Client](https://github.com/ServiceStack/Hello/tree/master/src/Client.iOS.Pcl) is the only project in this solution not created with VS.NET. You can open the iOS project in Xamarin Studio by opening the **Hello.Xamarin.sln**.
 
 Whilst it's possible to develop 
 [iOS Apps in VS.NET](http://docs.xamarin.com/guides/ios/getting_started/introduction_to_xamarin_ios_for_visual_studio/), 

@@ -167,6 +167,11 @@ btnAsync.Click += delegate {
 The `Success` extension method unwraps the response for successful calls whilst the `Error` extension method unwraps single exceptions from any thrown
 AggregateException, otherwise it passes it through untouched.
 
+### Issues
+
+As of this writing there was an issue with trying to build Android on Windows due to a missing **System.IO.Compression.dll** dll in the windows installer. 
+A temporary solution was published on [Xamarin's Forums](http://forums.xamarin.com/discussion/11451/android-system-io-compression-dll-not-available-on-windows).
+
 
 ## [Xamarin.iOS Client](https://github.com/ServiceStack/Hello/tree/master/src/Client.iOS.Pcl)
 

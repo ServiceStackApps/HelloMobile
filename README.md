@@ -175,6 +175,7 @@ A temporary solution was published on [Xamarin's Forums](http://forums.xamarin.c
   1. [Download the missing dls](http://cdn.vanillaforums.com/xamarin.vanillaforums.com/FileUpload/87/0ff56446b59dd94ef0e42f58bda210.zip)
   2. Copy them to:
 
+
     C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\MonoAndroid\v1.0\
 
 

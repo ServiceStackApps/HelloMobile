@@ -68,7 +68,7 @@ Check that it's up and running by going to: `http://localhost:81` in a web brows
 
 ## Add NuGet Package Manager to Xamarin Studio
 
-Follow this guide to [Add NuGet Package Manager to Xamarin Studio](http://barambani.wordpress.com/2013/10/07/add-nuget-package-manager-and-servicestack-to-xamarin-studio-projects-2/) which allows you to easily reference NuGet packages in Xamarin Studio.
+Follow this guide to [Add NuGet Package Manager to Xamarin Studio](http://barambani.wordpress.com/2013/10/07/add-nuget-package-manager-and-servicestack-to-xamarin-studio-projects-2/) so you can easily reference NuGet packages inside Xamarin Studio.
 
 ## [Xamarin.Android Client](https://github.com/ServiceStack/Hello/tree/master/src/Client.Android.Pcl)
 

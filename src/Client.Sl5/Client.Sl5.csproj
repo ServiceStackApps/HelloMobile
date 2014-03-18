@@ -72,15 +72,15 @@
     <Reference Include="mscorlib" />
     <Reference Include="ServiceStack.Client, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\ServiceStack.Client.Pcl.4.0.12\lib\sl5\ServiceStack.Client.dll</HintPath>
+      <HintPath>..\packages\ServiceStack.Client.Pcl.4.0.15\lib\sl5\ServiceStack.Client.dll</HintPath>
     </Reference>
     <Reference Include="ServiceStack.Interfaces, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\ServiceStack.Interfaces.Pcl.4.0.12\lib\portable-wp80+sl5+net45+win8+monotouch+monoandroid\ServiceStack.Interfaces.dll</HintPath>
+      <HintPath>..\packages\ServiceStack.Interfaces.Pcl.4.0.15\lib\portable-wp80+sl5+net45+win8+monotouch+monoandroid\ServiceStack.Interfaces.dll</HintPath>
     </Reference>
     <Reference Include="ServiceStack.Text, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\ServiceStack.Text.Pcl.4.0.12\lib\sl5\ServiceStack.Text.dll</HintPath>
+      <HintPath>..\packages\ServiceStack.Text.Pcl.4.0.15\lib\sl5\ServiceStack.Text.dll</HintPath>
     </Reference>
     <Reference Include="System.ComponentModel.DataAnnotations, Version=5.0.5.0, Culture=neutral, PublicKeyToken=ddd0da4d3e678217, processorArchitecture=MSIL" />
     <Reference Include="System.IO">

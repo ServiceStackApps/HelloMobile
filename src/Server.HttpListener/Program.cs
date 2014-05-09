@@ -6,7 +6,7 @@ using ServiceStack.Text;
 
 namespace Server.HttpListener
 {
-    public class AppHost : AppHostHttpListenerBase
+    public class AppHost : AppSelfHostBase
     {
         public AppHost()
             : base("Hello HttpListener Server", typeof(WebServices).Assembly) { }
@@ -23,7 +23,14 @@ namespace Server.HttpListener
     {
         public object Any(Hello request)
         {
-            return new HelloResponse { Result = "Hello, " + request.Name };
+            var response = new HelloResponse { Result = "Hello, " + request.Name };
+
+            if (Request.Files.Length > 0)
+            {
+                response.Result += ".\nFiles: {0}, name: {1}, size: {2} bytes".Fmt(Request.Files.Length, Request.Files[0].FileName, Request.Files[0].ContentLength);
+            }
+
+            return response;
         }
     }
 

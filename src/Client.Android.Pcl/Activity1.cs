@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using Android.App;
 using Android.Widget;
 using Android.OS;
@@ -34,6 +35,15 @@ namespace Client.Android.Pcl
                 {
                     var response = client.Get(new Hello { Name = txtName.Text });
                     lblResults.Text = response.Result;
+
+                    using (var ms = new MemoryStream("Contents".ToUtf8Bytes()))
+                    {
+                        ms.Position = 0;
+                        var fileResponse = client.PostFileWithRequest<HelloResponse>(
+                            "/hello", ms, "filename.txt", new Hello { Name = txtName.Text });
+
+                        lblResults.Text = fileResponse.Result;
+                    }
                 }
                 catch (Exception ex)
                 {

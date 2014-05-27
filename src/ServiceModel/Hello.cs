@@ -14,4 +14,10 @@ namespace ServiceModel
 
         public ResponseStatus ResponseStatus { get; set; }
     }
+
+    [Route("/helloauth")]
+    public class HelloAuth : IReturn<HelloResponse>
+    {
+        public string Name { get; set; }
+    }
 }

@@ -22,6 +22,7 @@ namespace Client.Android.Pcl
             var btnSync = FindViewById<Button>(Resource.Id.btnSync);
             var btnAsync = FindViewById<Button>(Resource.Id.btnAsync);
             var btnAwait = FindViewById<Button>(Resource.Id.btnAwait);
+            var btnAuth = FindViewById<Button>(Resource.Id.btnAuth);
             var txtName = FindViewById<EditText>(Resource.Id.txtName);
             var lblResults = FindViewById<TextView>(Resource.Id.lblResults);
 
@@ -63,6 +64,27 @@ namespace Client.Android.Pcl
                 try
                 {
                     var response = await client.GetAsync(new Hello { Name = txtName.Text });
+                    lblResults.Text = response.Result;
+                }
+                catch (Exception ex)
+                {
+                    lblResults.Text = ex.ToString();
+                }
+            };
+
+            btnAuth.Click += async delegate
+            {
+                try
+                {
+                    await client.PostAsync(new Authenticate
+                    {
+                        provider = "credentials",
+                        UserName = "user",
+                        Password = "pass",
+                    });
+
+                    var response = await client.GetAsync(new HelloAuth { Name = "Secure " + txtName.Text });
+
                     lblResults.Text = response.Result;
                 }
                 catch (Exception ex)

@@ -18,10 +18,6 @@ namespace Client.Sl5
             client = new JsonServiceClient("http://localhost:81/");
         }
 
-        private void btnSync_Click(object sender, RoutedEventArgs e)
-        {
-        }
-
         private void btnAsync_Click(object sender, RoutedEventArgs e)
         {
             client.GetAsync(new Hello { Name = txtName.Text })
@@ -42,30 +38,29 @@ namespace Client.Sl5
             }
         }
 
-        private void btnTest_Click(object sender, RoutedEventArgs e)
+        private async void btnAuth_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                var jsonClient = new JsonServiceClient("http://localhost:81/")
+                await client.PostAsync(new Authenticate
                 {
-                    EmulateHttpViaPost = true,
-                    HandleCallbackOnUiThread = true,
-                    ShareCookiesWithBrowser = false,
-                    StoreCookies = false
-                };
-
-                var req = new Hello { Name = txtName.Text };
-
-                jsonClient.GetAsync(req).Success(r => {
-                    lblResults.Content = r.Result;
-                }).Error(ex => {
-                    lblResults.Content = ex.ToString();
+                    provider = "credentials",
+                    UserName = "user",
+                    Password = "pass"
                 });
+
+                var response = await client.GetAsync(new HelloAuth { Name = "Secure " + txtName.Text });
+
+                lblResults.Content = response.Result;
             }
             catch (Exception ex)
             {
                 lblResults.Content = ex.ToString();
             }
+        }
+
+        private async void btnTest_Click(object sender, RoutedEventArgs e)
+        {
         }
     }
 }

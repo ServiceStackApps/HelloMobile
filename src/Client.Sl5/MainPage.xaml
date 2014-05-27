@@ -9,11 +9,12 @@
     <Grid x:Name="LayoutRoot" Background="White" Margin="0,0,-74,-241">
 
         <sdk:Label HorizontalAlignment="Left" Height="53" Margin="10,10,0,0" VerticalAlignment="Top" Width="134" FontSize="36" Content="Name:"/>
-        <TextBox x:Name="txtName" HorizontalAlignment="Left" Height="55" Margin="149,10,0,0" TextWrapping="Wrap" Text="World!" VerticalAlignment="Top" Width="501" FontSize="36"/>
-        <Button x:Name="btnSync" Content="Sync" HorizontalAlignment="Left" Margin="10,81,0,0" VerticalAlignment="Top" Width="208" FontSize="36" IsEnabled="False"/>
-        <Button x:Name="btnAsync" Content="Async" HorizontalAlignment="Left" Margin="226,81,0,0" VerticalAlignment="Top" Width="208" FontSize="36" Click="btnAsync_Click" />
-        <Button x:Name="btnAwait" Content="Await" HorizontalAlignment="Left" Margin="442,81,0,0" VerticalAlignment="Top" Width="208" FontSize="36" RenderTransformOrigin="2.409,2.008" Click="btnAwait_Click"/>
-        <Button x:Name="btnTest" Content="Test" HorizontalAlignment="Left" Margin="661,81,0,0" VerticalAlignment="Top" Width="208" FontSize="36" RenderTransformOrigin="2.409,2.008" Click="btnTest_Click"/>
+        <TextBox x:Name="txtName" HorizontalAlignment="Left" Height="55" Margin="149,10,0,0" TextWrapping="Wrap" Text="World!" VerticalAlignment="Top" Width="826" FontSize="36"/>
+        <Button x:Name="btnSync" Content="Sync" HorizontalAlignment="Left" Margin="10,81,0,0" VerticalAlignment="Top" Width="188" FontSize="36" IsEnabled="False"/>
+        <Button x:Name="btnAsync" Content="Async" HorizontalAlignment="Left" Margin="205,81,0,0" VerticalAlignment="Top" Width="188" FontSize="36" Click="btnAsync_Click" />
+        <Button x:Name="btnAwait" Content="Await" HorizontalAlignment="Left" Margin="401,81,0,0" VerticalAlignment="Top" Width="188" FontSize="36" RenderTransformOrigin="2.409,2.008" Click="btnAwait_Click"/>
+        <Button x:Name="btnAuth" Content="Auth" HorizontalAlignment="Left" Margin="594,81,0,0" VerticalAlignment="Top" Width="188" FontSize="36" RenderTransformOrigin="2.409,2.008" Click="btnAuth_Click"/>
+        <Button x:Name="btnTest" Content="Test" HorizontalAlignment="Left" Margin="787,81,0,0" VerticalAlignment="Top" Width="188" FontSize="36" RenderTransformOrigin="2.409,2.008" Click="btnTest_Click"/>
         <sdk:Label x:Name="lblResults" HorizontalAlignment="Left" Height="584" Margin="10,155,0,0" VerticalAlignment="Top" Width="1023" FontSize="36" Content=""/>
 
     </Grid>

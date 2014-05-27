@@ -2,6 +2,7 @@
 using Funq;
 using ServiceModel;
 using ServiceStack;
+using ServiceStack.Auth;
 using ServiceStack.Text;
 
 namespace Server.HttpListener
@@ -14,6 +15,11 @@ namespace Server.HttpListener
         public override void Configure(Container container)
         {
             Plugins.Add(new CorsFeature());
+
+            Plugins.Add(new AuthFeature(() => new AuthUserSession(),
+                new IAuthProvider[] {
+                    new CustomCredentialsAuthProvider(), 
+                }));
 
             Routes.AddFromAssembly(typeof(WebServices).Assembly);
         }
@@ -31,6 +37,24 @@ namespace Server.HttpListener
             }
 
             return response;
+        }
+    }
+
+    [Authenticate]
+    public class AdminServices : Service
+    {
+        public object Any(HelloAuth request)
+        {
+            var response = new HelloResponse { Result = "Hello, " + request.Name };
+            return response;
+        }
+    }
+
+    public class CustomCredentialsAuthProvider : CredentialsAuthProvider
+    {
+        public override bool TryAuthenticate(IServiceBase authService, string userName, string password)
+        {
+            return userName == "user" && password == "pass";
         }
     }
 

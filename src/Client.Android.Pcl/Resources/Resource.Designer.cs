@@ -65,6 +65,9 @@ namespace Client.Android.Pcl
 			// aapt resource value: 0x7f050005
 			public const int btnAsync = 2131034117;
 			
+			// aapt resource value: 0x7f050007
+			public const int btnAuth = 2131034119;
+			
 			// aapt resource value: 0x7f050006
 			public const int btnAwait = 2131034118;
 			
@@ -74,8 +77,8 @@ namespace Client.Android.Pcl
 			// aapt resource value: 0x7f050001
 			public const int lblName = 2131034113;
 			
-			// aapt resource value: 0x7f050007
-			public const int lblResults = 2131034119;
+			// aapt resource value: 0x7f050008
+			public const int lblResults = 2131034120;
 			
 			// aapt resource value: 0x7f050000
 			public const int linearLayout1 = 2131034112;

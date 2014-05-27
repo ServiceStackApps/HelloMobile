@@ -64,5 +64,26 @@ namespace Client.WinStore.Pcl
                 lblResults.Text = ex.ToString();
             }
         }
+
+        private async void btnAuth_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                await client.PostAsync(new Authenticate
+                {
+                    provider = "credentials",
+                    UserName = "user",
+                    Password = "pass",
+                });
+
+                var response = await client.GetAsync(new HelloAuth { Name = "Secure " + txtName.Text });
+
+                lblResults.Text = response.Result;
+            }
+            catch (Exception ex)
+            {
+                lblResults.Text = ex.ToString();
+            }
+        }
     }
 }

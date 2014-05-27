@@ -101,6 +101,11 @@
             Register user-defined custom routes.
             </summary>
         </member>
+        <member name="P:ServiceStack.IAppHost.Metadata">
+            <summary>
+            Inferred Metadata available from existing services 
+            </summary>
+        </member>
         <member name="P:ServiceStack.IAppHost.ContentTypes">
             <summary>
             Register custom ContentType serializers
@@ -144,6 +149,11 @@
         <member name="P:ServiceStack.IAppHost.UncaughtExceptionHandlers">
             <summary>
             Provide an exception handler for un-caught exceptions
+            </summary>
+        </member>
+        <member name="P:ServiceStack.IAppHost.AfterInitCallbacks">
+            <summary>
+            Provide callbacks to be fired after the AppHost has finished initializing
             </summary>
         </member>
         <member name="P:ServiceStack.IAppHost.RawHttpHandlers">
@@ -285,12 +295,6 @@
             </summary>
             <returns>Reserved Url if the process completes successfully</returns>
         </member>
-        <member name="T:ServiceStack.Auth.GithubAuthProvider">
-            <summary>
-              Create an App at: https://github.com/settings/applications/new
-              The Callback URL for your app should match the CallbackUrl provided.
-            </summary>
-        </member>
         <member name="M:ServiceStack.Auth.IAuthProvider.Logout(ServiceStack.IServiceBase,ServiceStack.Authenticate)">
             <summary>
             Remove the Users Session
@@ -334,6 +338,25 @@
             Overrideable, the default behaviour is to call IUserAuthRepository.CreateOrMergeAuthSession().
             </summary>
         </member>
+        <member name="P:ServiceStack.Auth.AspNetWindowsAuthProvider.AllRoles">
+            <summary>
+            Specify all roles to be used by this application
+            </summary>
+        </member>
+        <member name="P:ServiceStack.Auth.AspNetWindowsAuthProvider.LimitAccessToRoles">
+            <summary>
+            Only allow access to users in specified roles
+            </summary>
+        </member>
+        <member name="T:ServiceStack.Auth.OdnoklassnikiAuthProvider">
+            <summary>
+              Create Odnoklassniki App at: http://www.odnoklassniki.ru/devaccess
+              The Callback URL for your app should match the CallbackUrl provided.
+              
+              NB: They claim they use OAuth 2.0, but they in fact don't. 
+              http://apiok.ru/wiki/display/api/Authorization+OAuth+2.0
+            </summary>
+        </member>
         <member name="M:ServiceStack.Auth.OAuthProvider.Authenticate(ServiceStack.IServiceBase,ServiceStack.Auth.IAuthSession,ServiceStack.Authenticate)">
             <summary>
             The entry point for all AuthProvider providers. Runs inside the AuthService so exceptions are treated normally.
@@ -352,6 +375,33 @@
             <param name="session"></param>
             <param name="request"> </param>
             <returns></returns>
+        </member>
+        <member name="T:ServiceStack.Auth.VkAuthProvider">
+            <summary>
+              Create VK App at: http://vk.com/editapp?act=create
+              The Callback URL for your app should match the CallbackUrl provided.
+            </summary>
+        </member>
+        <member name="M:ServiceStack.Auth.VkAuthProvider.EnsureLatestCode(System.String)">
+            <summary>
+            If previous attemts failes, the subsequential calls 
+            build up code value like "code1,code2,code3"
+            so we need the last one only
+            </summary>
+            <param name="code"></param>
+            <returns></returns>
+        </member>
+        <member name="T:ServiceStack.Auth.YandexAuthProvider">
+            <summary>
+              Create Yandex App at: https://oauth.yandex.ru/client/new
+              The Callback URL for your app should match the CallbackUrl provided.
+            </summary>
+        </member>
+        <member name="T:ServiceStack.Auth.GithubAuthProvider">
+            <summary>
+              Create an App at: https://github.com/settings/applications/new
+              The Callback URL for your app should match the CallbackUrl provided.
+            </summary>
         </member>
         <member name="M:ServiceStack.Auth.GithubAuthProvider.UserRequestFilter(System.Net.HttpWebRequest)">
             <summary>

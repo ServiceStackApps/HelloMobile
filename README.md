@@ -216,6 +216,8 @@ Any Outlets defined are exposed as properties whilst any Actions are available a
 
 With all elements and actions in place you can start add your C# implementation in your main [*ViewController.cs](https://github.com/ServiceStack/Hello/blob/master/src/Client.iOS/Client_iOSViewController.cs) file.
 
+### Initializing PCL Client
+
 The first line of code is to register the PCL Provider for iOS, normally this is automatically inferred but as it sometimes doesn't get picked up for iOS, it's recommended to explicitly register it with:
 
 ```csharp

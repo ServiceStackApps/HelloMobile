@@ -38,6 +38,9 @@
     <Compile Include="..\ServiceModel\Hello.cs">
       <Link>Hello.cs</Link>
     </Compile>
+    <Compile Include="..\ServiceModel\UploadFile.cs">
+      <Link>UploadFile.cs</Link>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

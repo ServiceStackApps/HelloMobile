@@ -1,5 +1,7 @@
 ﻿using System;
+using System.IO;
 using System.Net;
+using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using ServiceModel;
@@ -61,6 +63,34 @@ namespace Client.Sl5
 
         private async void btnTest_Click(object sender, RoutedEventArgs e)
         {
+            //Make all access to UI components in UI Thread, i.e. before entering bg thread.
+            var name = txtName.Text;
+            ThreadPool.QueueUserWorkItem(_ =>
+            {
+                try
+                {
+                    var client = new JsonServiceClient("http://localhost:81/")
+                    {
+                        //this tries to access UI component which is invalid in bg thread
+                        ShareCookiesWithBrowser = false
+                    };
+                    var fileStream = new MemoryStream("content body".ToUtf8Bytes());
+                    var response = client.PostFileWithRequest<UploadFileResponse>(
+                        fileStream, "file.txt", new UploadFile { Name = name });
+
+                    Deployment.Current.Dispatcher.BeginInvoke(() =>
+                    {
+                        lblResults.Content = "File Size: {0} bytes".Fmt(response.FileSize);
+                    });
+                }
+                catch (Exception ex)
+                {
+                    Deployment.Current.Dispatcher.BeginInvoke(() =>
+                    {
+                        lblResults.Content = ex.ToString();
+                    });
+                }
+            });
         }
     }
 }

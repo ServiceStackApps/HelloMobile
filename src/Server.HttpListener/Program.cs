@@ -22,6 +22,10 @@ namespace Server.HttpListener
                 }));
 
             Routes.AddFromAssembly(typeof(WebServices).Assembly);
+
+            SetConfig(new HostConfig {
+                DebugMode = true
+            });
         }
     }
 
@@ -34,6 +38,21 @@ namespace Server.HttpListener
             if (Request.Files.Length > 0)
             {
                 response.Result += ".\nFiles: {0}, name: {1}, size: {2} bytes".Fmt(Request.Files.Length, Request.Files[0].FileName, Request.Files[0].ContentLength);
+            }
+
+            return response;
+        }
+
+        public object Any(UploadFile request)
+        {
+            var response = new UploadFileResponse {
+                Name = request.Name,
+            };
+
+            if (base.Request.Files.Length > 0)
+            {
+                var file = base.Request.Files[0];
+                response.FileSize = file.ContentLength;
             }
 
             return response;

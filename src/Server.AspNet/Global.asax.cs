@@ -31,6 +31,22 @@ namespace Server.AspNet
         {
             return new HelloResponse { Result = "Hello, " + request.Name };
         }
+
+        public object Any(UploadFile request)
+        {
+            var response = new UploadFileResponse
+            {
+                Name = request.Name,
+            };
+
+            if (base.Request.Files.Length > 0)
+            {
+                var file = base.Request.Files[0];
+                response.FileSize = file.ContentLength;
+            }
+
+            return response;
+        }
     }
 
     [Authenticate]

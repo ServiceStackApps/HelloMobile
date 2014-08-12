@@ -8,11 +8,12 @@
 
     <Grid Background="{StaticResource ApplicationPageBackgroundThemeBrush}">
         <TextBlock HorizontalAlignment="Left" Margin="28,50,0,0" TextWrapping="Wrap" Text="Name:" VerticalAlignment="Top" FontSize="48"/>
-        <TextBox x:Name="txtName" HorizontalAlignment="Left" Margin="214,32,0,0" TextWrapping="Wrap" Text="World!" VerticalAlignment="Top" FontSize="48" Width="735"/>
+        <TextBox x:Name="txtName" HorizontalAlignment="Left" Margin="214,32,0,0" TextWrapping="Wrap" Text="World!" VerticalAlignment="Top" FontSize="48" Width="965"/>
         <Button x:Name="btnSync" Content="Sync" HorizontalAlignment="Left" Margin="29,138,0,0" VerticalAlignment="Top" FontSize="48" Width="230" Click="btnSync_Click"/>
         <Button x:Name="btnAsync" Content="Async" HorizontalAlignment="Left" Margin="264,138,0,0" VerticalAlignment="Top" FontSize="48" Width="225" Click="btnAsync_Click"/>
         <Button x:Name="btnAwait" Content="Await" HorizontalAlignment="Left" Margin="494,138,0,0" VerticalAlignment="Top" FontSize="48" Width="225" Click="btnAwait_Click" />
         <Button x:Name="btnAuth" Content="Auth" HorizontalAlignment="Left" Margin="724,138,0,0" VerticalAlignment="Top" FontSize="48" Width="225" RenderTransformOrigin="1.519,0.516" Click="btnAuth_Click" />
         <TextBlock x:Name="lblResults" HorizontalAlignment="Left" Margin="28,238,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" FontSize="48" Width="921" Height="520"/>
+        <Button x:Name="btnShared" Content="Shared" HorizontalAlignment="Left" Margin="954,138,0,0" VerticalAlignment="Top" FontSize="48" Width="225" RenderTransformOrigin="1.519,0.516" Click="btnShared_Click"/>
     </Grid>
 </Page>

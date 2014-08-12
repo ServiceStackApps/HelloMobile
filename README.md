@@ -20,38 +20,23 @@ This project contains example applications on the following platforms:
 
 Most clients make use of ServiceStack's new PCL support which are contained in the following NuGet packages:
 
-  - ServiceStack.Interfaces.Pcl
-    - PCL Profiles: iOS, Android, Windows8, .NET 4.5, Silverlight5, WP8
-  - ServiceStack.Client.Pcl
-    - PCL Profiles: iOS, Android, Windows8, .NET 4.5
-    - Custom builds: Silverlight 5
-  - ServiceStack.Text.Pcl
-    - PCL Profiles: iOS, Android, Windows8, .NET 4.5
-    - Custom builds: Silverlight 5
+  - ServiceStack.Interfaces
+    - PCL Profiles: iOS, Android, Windows8, .NET 4.0, Silverlight5, WP8 (Profile136)
+  - ServiceStack.Client
+    - PCL Profiles: iOS, Android, Windows8, .NET 4.5 (Profile7)
+    - Custom builds: NET40, Silverlight 5
+  - ServiceStack.Text
+    - PCL Profiles: iOS, Android, Windows8, .NET 4.5 (Profile7)
+    - Custom builds: NET40, Silverlight 5
  
-Your DTO projects only need to reference **ServiceStack.Interfaces.Pcl** package whilst the service clients are contained within
-the **ServiceStack.Client.Pcl** NuGet package. 
+Your DTO projects only need to reference **ServiceStack.Interfaces** package whilst the service clients are contained within
+the **ServiceStack.Client** NuGet package. 
 
-As described above, only **ServiceStack.Interfaces.Pcl** supports most of the available PCL profiles. 
-Although this alone still enables great re-use thanks to ServiceStack's design of having most providers implementing interfaces, 
-which combined with DTO's having minimal dependencies, only a reference to ServiceStack.Interfaces is required to share any 
-higher-level functionality that consumes ServiceStack services across most platforms. 
+This enables great re-use thanks to ServiceStack's design of having most providers implementing interfaces, which combined with DTO's having minimal dependencies, only a reference to **ServiceStack.Interfaces** is required to share any higher-level functionality that consumes ServiceStack services across most platforms. 
 
-A greater level of binary-level reusability is enabled between iOS, Android, Windows8, .NET 4.5 platforms which are also 
-able to share concrete implementations and extension methods in their own applications portable libraries. 
+A greater level of binary-level reusability is enabled between iOS, Android, Windows8, .NET 4.5 platforms which are also able to share concrete implementations in (Profile7) portable class libraries. 
 
-Other Supported platforms may still achieve source-level code-reuse by creating a stub project (compiled for their platform) 
-and linking to the existing source files. 
-
-### Sharing Server DTO's with Clients
-
-All client projects reference **ServiceStack.Interfaces.Pcl** package whilst ServiceStack's server projects still reference 
-the existing **ServiceStack.Interfaces** NuGet package. 
-
-To share the server DTO's in the  
-[ServiceModel](https://github.com/ServiceStack/Hello/tree/master/src/ServiceModel) project, a new stub 
-[ServiceModel.Pcl](https://github.com/ServiceStack/Hello/tree/master/src/ServiceModel.Pcl) PCL project was created that just links 
-to the existing source files and references the **ServiceStack.Interfaces.Pcl** NuGet package so can be referenced by all client projects.
+Other supported platforms may still achieve source-level code-reuse with VS.NET's shared projects support or by creating a stub project (compiled for their platform) and linking to the existing source files. 
 
 ## Run the ServiceStack Host
 
@@ -350,19 +335,12 @@ The only difference is that the Main window is called **MainWindow.xaml** instea
 
 [![Silverlight 5 Screenshot](https://raw2.github.com/ServiceStack/Hello/master/screenshots/clients-silverlight.png)](https://github.com/ServiceStack/Hello/tree/master/src/Client.Sl5)
 
-The Silverlight project is different to the other clients in a couple of ways, firstly whilst it references the same `*.Pcl` packages, 
-it makes use of Silverlight-specific **ServiceStack.Text.dll** and **ServiceStack.Client.dll** builds which aren't binary compatible 
-with the other client platforms, so any high-level projects that use these impl dlls can't be shared with other PCL projects.
+The Silverlight project is different to the other clients in a couple of ways, firstly whilst it references the same NuGet packages, it makes use of Silverlight-specific **ServiceStack.Text.dll** and **ServiceStack.Client.dll** builds which aren't binary compatible with the other client platforms, so any high-level projects that use these impl dlls can't be shared with other PCL projects.
 
 Another difference when creating a new Silverlight Application is that it also creates a separate 
-[Client.Sl5.Web](https://github.com/ServiceStack/Hello/tree/master/src/Client.Sl5.Web) web deployment project where the 
-compiled `Client.Sl5.xap` Silverlight deployment package gets hosted from. As this package is executed within the context 
-of a web browser it must also comply with browser limitations like CORS limitations. To enable communication with our remote 
-ServiceStack instance, the `CorsFeature` Plugin and **clientaccesspolicy.xml** and **crossdomain.xml** permissions were added 
-to the ServiceStack hosts.
+[Client.Sl5.Web](https://github.com/ServiceStack/Hello/tree/master/src/Client.Sl5.Web) web deployment project where the compiled `Client.Sl5.xap` Silverlight deployment package gets hosted from. As this package is executed within the context of a web browser it must also comply with browser limitations like CORS limitations. To enable communication with our remote ServiceStack instance, the `CorsFeature` Plugin and **clientaccesspolicy.xml** and **crossdomain.xml** permissions were added to the ServiceStack hosts.
 
-A limitation in Silverlgiht is that only Asynchronous API's are supported, but like the previous XAML-based Windows Store and WPF clients, 
-the source code remains exactly the same:
+A limitation in Silverlgiht is that only Asynchronous API's are supported, but like the previous XAML-based Windows Store and WPF clients, the source code remains exactly the same:
 
 ```csharp
 private async void btnAwait_Click(object sender, RoutedEventArgs e)

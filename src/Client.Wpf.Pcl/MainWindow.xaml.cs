@@ -2,6 +2,7 @@
 using System.Windows;
 using ServiceModel;
 using ServiceStack;
+using Shared.Client;
 
 namespace Client.Wpf.Pcl
 {
@@ -11,6 +12,7 @@ namespace Client.Wpf.Pcl
     public partial class MainWindow : Window
     {
         private readonly JsonServiceClient client;
+        SharedGateway gateway = new SharedGateway();
 
         public MainWindow()
         {
@@ -66,6 +68,19 @@ namespace Client.Wpf.Pcl
                 var response = await client.GetAsync(new HelloAuth { Name = "Secure " + txtName.Text });
 
                 lblResults.Text = response.Result;
+            }
+            catch (Exception ex)
+            {
+                lblResults.Text = ex.ToString();
+            }
+        }
+
+        private async void btnPcl_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                var greeting = await gateway.SayHello(txtName.Text);
+                lblResults.Text = greeting;
             }
             catch (Exception ex)
             {

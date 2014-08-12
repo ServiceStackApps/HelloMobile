@@ -5,6 +5,7 @@ using Android.Widget;
 using Android.OS;
 using ServiceModel;
 using ServiceStack;
+using Shared.Client;
 
 namespace Client.Android.Pcl
 {
@@ -23,12 +24,14 @@ namespace Client.Android.Pcl
             var btnAsync = FindViewById<Button>(Resource.Id.btnAsync);
             var btnAwait = FindViewById<Button>(Resource.Id.btnAwait);
             var btnAuth = FindViewById<Button>(Resource.Id.btnAuth);
+            var btnShared = FindViewById<Button>(Resource.Id.btnShared);
             var txtName = FindViewById<EditText>(Resource.Id.txtName);
             var lblResults = FindViewById<TextView>(Resource.Id.lblResults);
 
             //10.0.2.2 = loopback
             //http://developer.android.com/tools/devices/emulator.html
             var client = new JsonServiceClient("http://10.0.2.2:81/");
+            var gateway = new SharedGateway("http://10.0.2.2:81/");
 
             btnSync.Click += delegate
             {
@@ -86,6 +89,19 @@ namespace Client.Android.Pcl
                     var response = await client.GetAsync(new HelloAuth { Name = "Secure " + txtName.Text });
 
                     lblResults.Text = response.Result;
+                }
+                catch (Exception ex)
+                {
+                    lblResults.Text = ex.ToString();
+                }
+            };
+
+            btnShared.Click += async delegate
+            {
+                try
+                {
+                    var greeting = await gateway.SayHello(txtName.Text);
+                    lblResults.Text = greeting;
                 }
                 catch (Exception ex)
                 {

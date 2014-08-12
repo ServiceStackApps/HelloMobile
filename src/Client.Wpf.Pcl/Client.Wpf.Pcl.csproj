@@ -113,6 +113,10 @@
       <Project>{aaa629ed-e575-4308-9f3d-a851a16748c1}</Project>
       <Name>ServiceModel</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Shared.Client\Shared.Client.csproj">
+      <Project>{28d9380f-f9f4-461f-99ca-f4d78bbb637f}</Project>
+      <Name>Shared.Client</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -40,10 +40,10 @@
             android:layout_marginBottom="0.0dp"
             android:layout_marginTop="0.0dp" />
         <Button
-            android:text="Async"
-            android:layout_width="79.0dp"
+            android:text="Shared"
+            android:layout_width="85.0dp"
             android:layout_height="match_parent"
-            android:id="@+id/btnAsync"
+            android:id="@+id/btnShared"
             android:layout_marginLeft="0.0dp" />
         <Button
             android:text="Await"
@@ -56,6 +56,12 @@
             android:layout_width="79.0dp"
             android:layout_height="match_parent"
             android:id="@+id/btnAuth"
+            android:layout_marginLeft="0.0dp" />
+        <Button
+            android:text="Async"
+            android:layout_width="79.0dp"
+            android:layout_height="match_parent"
+            android:id="@+id/btnAsync"
             android:layout_marginLeft="0.0dp" />
     </LinearLayout>
     <TextView

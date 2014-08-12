@@ -1,5 +1,6 @@
 ﻿using System;
 using ServiceStack;
+using Shared.Client;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
@@ -15,6 +16,7 @@ namespace Client.WinStore.Pcl
     public sealed partial class MainPage : Page
     {
         private readonly JsonServiceClient client;
+        SharedGateway gateway = new SharedGateway();
 
         public MainPage()
         {
@@ -85,5 +87,19 @@ namespace Client.WinStore.Pcl
                 lblResults.Text = ex.ToString();
             }
         }
+
+        private async void btnShared_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                var greeting = await gateway.SayHello(txtName.Text);
+                lblResults.Text = greeting;
+            }
+            catch (Exception ex)
+            {
+                lblResults.Text = ex.ToString();
+            }
+        }
+
     }
 }

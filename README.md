@@ -1,5 +1,5 @@
-Hello ServiceStack!
-===================
+Hello ServiceStack Mobile Clients!
+==================================
 
 This project shows a number of different .NET clients applications communicating with ServiceStack back-end services
 using the Sync, Task-based Async and C# async/await APIs, available in [ServiceStack's typed .NET clients](https://github.com/ServiceStack/ServiceStack/wiki/C%23-client).

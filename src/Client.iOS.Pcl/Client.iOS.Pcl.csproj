@@ -3,8 +3,6 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">iPhoneSimulator</Platform>
-    <ProductVersion>12.0.0</ProductVersion>
-    <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{0661687D-2D07-4696-90E0-41A2B76CF074}</ProjectGuid>
     <ProjectTypeGuids>{6BC8ED88-2882-458C-8E55-DFD12B67127B};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Exe</OutputType>
@@ -91,16 +89,16 @@
     <Reference Include="System.Core" />
     <Reference Include="monotouch" />
     <Reference Include="ServiceStack.Interfaces">
-      <HintPath>..\packages\ServiceStack.Interfaces.Pcl.4.0.6\lib\portable-wp80+sl5+net45+win8+monotouch+monoandroid\ServiceStack.Interfaces.dll</HintPath>
+      <HintPath>..\packages\ServiceStack.Interfaces.4.0.31\lib\portable-wp80+sl5+net40+win8+monotouch+monoandroid\ServiceStack.Interfaces.dll</HintPath>
     </Reference>
     <Reference Include="ServiceStack.Text">
-      <HintPath>..\packages\ServiceStack.Text.Pcl.4.0.6\lib\portable-net45+win8+monotouch+monoandroid\ServiceStack.Text.dll</HintPath>
+      <HintPath>..\packages\ServiceStack.Text.Pcl.4.0.31\lib\portable-net45+win8+monotouch+monoandroid\ServiceStack.Text.dll</HintPath>
     </Reference>
     <Reference Include="ServiceStack.Client">
-      <HintPath>..\packages\ServiceStack.Client.Pcl.4.0.6\lib\MonoTouch\ServiceStack.Client.dll</HintPath>
+      <HintPath>..\packages\ServiceStack.Client.Pcl.4.0.31\lib\MonoTouch\ServiceStack.Client.dll</HintPath>
     </Reference>
     <Reference Include="ServiceStack.Pcl.iOS">
-      <HintPath>..\packages\ServiceStack.Client.Pcl.4.0.6\lib\MonoTouch\ServiceStack.Pcl.iOS.dll</HintPath>
+      <HintPath>..\packages\ServiceStack.Client.Pcl.4.0.31\lib\MonoTouch\ServiceStack.Pcl.iOS.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

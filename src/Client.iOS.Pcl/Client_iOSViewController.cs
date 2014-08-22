@@ -15,7 +15,7 @@ namespace Client.iOS
 		public Client_iOSViewController () : base ("Client_iOSViewController", null)
 		{
 			IosPclExportClient.Configure ();
-			client = new JsonServiceClient ("http://10.0.0.8:81/");
+			client = new JsonServiceClient ("http://localhost:81/");
 		}
 
 		public override void DidReceiveMemoryWarning ()

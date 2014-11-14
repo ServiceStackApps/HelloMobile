@@ -6,7 +6,7 @@ using the Sync, Task-based Async and C# async/await APIs, available in [ServiceS
 
 ### Client Applications
 
-![Supported Client Platforms](https://raw2.github.com/ServiceStack/Hello/master/screenshots/portable-splash-900.png)
+![Supported Client Platforms](https://raw.githubusercontent.com/ServiceStackApps/HelloMobile/master/screenshots//portable-splash-900.png)
 
 This project contains example applications on the following platforms:
 
@@ -57,7 +57,7 @@ Follow this guide to [Add NuGet Package Manager to Xamarin Studio](http://baramb
 
 ## [Xamarin.Android Client](https://github.com/ServiceStack/Hello/tree/master/src/Client.Android.Pcl)
 
-[![Android Screenshot](https://raw2.github.com/ServiceStack/Hello/master/screenshots/clients-android.png)](https://github.com/ServiceStack/Hello/tree/master/src/Client.Android.Pcl)
+[![Android Screenshot](https://raw.githubusercontent.com/ServiceStackApps/HelloMobile/master/screenshots//clients-android.png)](https://github.com/ServiceStack/Hello/tree/master/src/Client.Android.Pcl)
 
 The Android example is contained in the [Client.Android.Pcl](https://github.com/ServiceStack/Hello/tree/master/src/Client.Android.Pcl) project.
 
@@ -166,7 +166,7 @@ A temporary solution was published on [Xamarin's Forums](http://forums.xamarin.c
 
 ## [Xamarin.iOS Client](https://github.com/ServiceStack/Hello/tree/master/src/Client.iOS.Pcl)
 
-[![iPhone Screenshot](https://raw2.github.com/ServiceStack/Hello/master/screenshots/clients-ios.png)](https://github.com/ServiceStack/Hello/tree/master/src/Client.iOS.Pcl)
+[![iPhone Screenshot](https://raw.githubusercontent.com/ServiceStackApps/HelloMobile/master/screenshots//clients-ios.png)](https://github.com/ServiceStack/Hello/tree/master/src/Client.iOS.Pcl)
 
 
 The [iOS Client](https://github.com/ServiceStack/Hello/tree/master/src/Client.iOS.Pcl) is the only project in this solution not created with VS.NET. You can open the iOS project in Xamarin Studio by opening the **Hello.Xamarin.sln**.
@@ -265,7 +265,7 @@ partial void btnAsync_Click (NSObject sender)
 
 ## [Windows 8 Store Client](https://github.com/ServiceStack/Hello/tree/master/src/Client.WinStore.Pcl)
 
-[![Windows Store Screenshot](https://raw2.github.com/ServiceStack/Hello/master/screenshots/clients-winstore.png)](https://github.com/ServiceStack/Hello/tree/master/src/Client.WinStore.Pcl)
+[![Windows Store Screenshot](https://raw.githubusercontent.com/ServiceStackApps/HelloMobile/master/screenshots//clients-winstore.png)](https://github.com/ServiceStack/Hello/tree/master/src/Client.WinStore.Pcl)
 
 If you've done any previous XAML development, Visual Studio provides a great Development experience for Windows 8 with fast iteration times and a great debugging experience.
 The one annoyance is a result of Windows Apps taking up the entire screen making it tedious to switch between the running app and debugging environment.
@@ -326,14 +326,14 @@ private void btnAsync_Click(object sender, RoutedEventArgs e)
 
 ## [WPF Client](https://github.com/ServiceStack/Hello/tree/master/src/Client.Wpf.Pcl)
 
-[![WPF Screenshot](https://raw2.github.com/ServiceStack/Hello/master/screenshots/clients-wpf.png)](https://github.com/ServiceStack/Hello/tree/master/src/Client.Wpf.Pcl)
+[![WPF Screenshot](https://raw.githubusercontent.com/ServiceStackApps/HelloMobile/master/screenshots//clients-wpf.png)](https://github.com/ServiceStack/Hello/tree/master/src/Client.Wpf.Pcl)
 
 The WPF development experience is very similar to the Windows Store app, where even the source code for declaring and implementing the button event handlers is exactly the same.
 The only difference is that the Main window is called **MainWindow.xaml** instead of **MainPage.xaml**.
 
 ## [Silverlight 5 Client](https://github.com/ServiceStack/Hello/tree/master/src/Client.Sl5)
 
-[![Silverlight 5 Screenshot](https://raw2.github.com/ServiceStack/Hello/master/screenshots/clients-silverlight.png)](https://github.com/ServiceStack/Hello/tree/master/src/Client.Sl5)
+[![Silverlight 5 Screenshot](https://raw.githubusercontent.com/ServiceStackApps/HelloMobile/master/screenshots//clients-silverlight.png)](https://github.com/ServiceStack/Hello/tree/master/src/Client.Sl5)
 
 The Silverlight project is different to the other clients in a couple of ways, firstly whilst it references the same NuGet packages, it makes use of Silverlight-specific **ServiceStack.Text.dll** and **ServiceStack.Client.dll** builds which aren't binary compatible with the other client platforms, so any high-level projects that use these impl dlls can't be shared with other PCL projects.
 

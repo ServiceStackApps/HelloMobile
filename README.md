@@ -29,8 +29,12 @@ Most clients make use of ServiceStack's new PCL support which are contained in t
     - PCL Profiles: iOS, Android, Windows8, .NET 4.5 (Profile7)
     - Custom builds: NET40, Silverlight 5
  
+### Install
+
 Your DTO projects only need to reference **ServiceStack.Interfaces** package whilst the service clients are contained within
 the **ServiceStack.Client** NuGet package. 
+
+    PM> Install-Package ServiceStack.Client
 
 This enables great re-use thanks to ServiceStack's design of having most providers implementing interfaces, which combined with DTO's having minimal dependencies, only a reference to **ServiceStack.Interfaces** is required to share any higher-level functionality that consumes ServiceStack services across most platforms. 
 

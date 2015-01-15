@@ -52,7 +52,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ServiceModel\ServiceModel.csproj">
-      <Project>{aaa629ed-e575-4308-9f3d-a851a16748c1}</Project>
+      <Project>{AAA629ED-E575-4308-9F3D-A851A16748C1}</Project>
       <Name>ServiceModel</Name>
     </ProjectReference>
   </ItemGroup>

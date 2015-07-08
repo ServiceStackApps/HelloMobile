@@ -31,12 +31,18 @@ Most clients make use of ServiceStack's new PCL support which are contained in t
  
 ### Install
 
-Your DTO projects only need to reference **ServiceStack.Interfaces** package whilst the service clients are contained within
-the **ServiceStack.Client** NuGet package. 
+Your DTO projects only need to reference **ServiceStack.Interfaces** package whilst the Service Clients are contained within
+the **ServiceStack.Client** NuGet package: 
 
     PM> Install-Package ServiceStack.Client
 
-This enables great re-use thanks to ServiceStack's design of having most providers implementing interfaces, which combined with DTO's having minimal dependencies, only a reference to **ServiceStack.Interfaces** is required to share any higher-level functionality that consumes ServiceStack services across most platforms. 
+Alternatively you can also use `JsonHttpClient` from:
+
+    PM> Install-Package ServiceStack.HttpClient
+
+Which as it's based on Microsoft's new HttpClient can be [configured to be used with ModernHttpClient](https://github.com/ServiceStack/ServiceStack/wiki/C%23-client#modernhttpclient).
+
+We get great re-use thanks to ServiceStack's design of having most providers implementing interfaces, which combined with DTO's having minimal dependencies, only a reference to **ServiceStack.Interfaces** is required to share any higher-level functionality that consumes ServiceStack services across most platforms. 
 
 A greater level of binary-level reusability is enabled between iOS, Android, Windows8, .NET 4.5 platforms which are also able to share concrete implementations in (Profile7) portable class libraries. 
 
@@ -168,21 +174,12 @@ A temporary solution was published on [Xamarin's Forums](http://forums.xamarin.c
   1. [Download the missing dls](http://cdn.vanillaforums.com/xamarin.vanillaforums.com/FileUpload/87/0ff56446b59dd94ef0e42f58bda210.zip)
   2. Copy them to: `C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\MonoAndroid\v1.0\`
 
-## [Xamarin.iOS Client](https://github.com/ServiceStackApps/HelloMobile/tree/master/src/Client.iOS10.Pcl)
+## [Xamarin.iOS Client](https://github.com/ServiceStack/Hello/tree/master/src/Client.iOS.Pcl)
 
-[![iPhone Screenshot](https://raw.githubusercontent.com/ServiceStackApps/HelloMobile/master/screenshots//clients-ios.png)](https://github.com/ServiceStackApps/HelloMobile/tree/master/src/Client.iOS10.Pcl)
+[![iPhone Screenshot](https://raw.githubusercontent.com/ServiceStackApps/HelloMobile/master/screenshots//clients-ios.png)](https://github.com/ServiceStack/Hello/tree/master/src/Client.iOS.Pcl)
+
 
 The [iOS Client](https://github.com/ServiceStack/Hello/tree/master/src/Client.iOS.Pcl) is the only project in this solution not created with VS.NET. You can open the iOS project in Xamarin Studio by opening the **Hello.Xamarin.sln**.
-
-## [Xamarin's Unified API](http://developer.xamarin.com/guides/cross-platform/macios/unified/)
-
-<img src="https://raw.githubusercontent.com/ServiceStack/Assets/master/img/release-notes/xamarin-unifiedapi.png" align="right" vspace="10" width="300" />
-
-We also have a Xamarin.iOS [Unified API version of the iOS Client](https://github.com/ServiceStackApps/HelloMobile/tree/master/src/Client.iOS10.Pcl) which is a Universal iPhone and iPad project which uses Xamarin's new [Unified API](http://developer.xamarin.com/guides/cross-platform/macios/unified/)
-
-Support is in addition to the existing 32bit **monotouch.dll** which used the **MonoTouch** NuGet profile. Xamarin Unified API instead uses the new **Xamarin.iOS10** NuGet profile. For new Apps this works transparently where you can add a NuGet package reference and it will automatically reference the appropriate build. Existing iOS proejcts should follow Xamarin's [Updating Existing iOS Apps](http://developer.xamarin.com/guides/cross-platform/macios/updating_ios_apps/) docs.
-
-### iOS with VS.NET
 
 Whilst it's possible to develop 
 [iOS Apps in VS.NET](http://docs.xamarin.com/guides/ios/getting_started/introduction_to_xamarin_ios_for_visual_studio/), 

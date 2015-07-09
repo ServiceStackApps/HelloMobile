@@ -40,7 +40,13 @@ Alternatively you can also use `JsonHttpClient` from:
 
     PM> Install-Package ServiceStack.HttpClient
 
-Which as it's based on Microsoft's new HttpClient can be [configured to be used with ModernHttpClient](https://github.com/ServiceStack/ServiceStack/wiki/C%23-client#modernhttpclient).
+Which as it's based on Microsoft's new async HttpClient can be [configured to be used with ModernHttpClient](https://github.com/ServiceStack/ServiceStack/wiki/C%23-client#modernhttpclient) which provides a thin wrapper around iOS's native `NSURLSession` or `OkHttp` client on Android, offering improved performance and stability for mobile connectivity which can be configured for all `JsonHttpClient` instances by configuring it to use ModernHttpClient's NativeMessageHandler, i.e:
+
+```csharp
+JsonHttpClient.GlobalHttpMessageHandlerFactory = () => new NativeMessageHandler()
+```
+
+### Re-using DTO's in PCL Clients
 
 We get great re-use thanks to ServiceStack's design of having most providers implementing interfaces, which combined with DTO's having minimal dependencies, only a reference to **ServiceStack.Interfaces** is required to share any higher-level functionality that consumes ServiceStack services across most platforms. 
 

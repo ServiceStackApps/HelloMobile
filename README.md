@@ -36,11 +36,13 @@ the **ServiceStack.Client** NuGet package:
 
     PM> Install-Package ServiceStack.Client
 
-Alternatively you can also use `JsonHttpClient` from:
+Alternatively you can instead use `JsonHttpClient` from:
 
     PM> Install-Package ServiceStack.HttpClient
 
-Which as it's based on Microsoft's new async HttpClient can be [configured to be used with ModernHttpClient](https://github.com/ServiceStack/ServiceStack/wiki/C%23-client#modernhttpclient) which provides a thin wrapper around iOS's native `NSURLSession` or `OkHttp` client on Android, offering improved performance and stability for mobile connectivity which can be configured for all `JsonHttpClient` instances by configuring it to use ModernHttpClient's NativeMessageHandler, i.e:
+Which as it's based on Microsoft's new async HttpClient can be [configured to be used with ModernHttpClient](https://github.com/ServiceStack/ServiceStack/wiki/C%23-client#modernhttpclient) which provides a thin wrapper around iOS's native `NSURLSession` or `OkHttp` client on Android, offering improved performance and stability for mobile connectivity. 
+
+Configure all `JsonHttpClient` instances to use ModernHttpClient's NativeMessageHandler with:
 
 ```csharp
 JsonHttpClient.GlobalHttpMessageHandlerFactory = () => new NativeMessageHandler()

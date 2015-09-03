@@ -1,1 +1,12 @@
-﻿<Properties StartupItem="Client.iOS10.Pcl/Client.iOS10.Pcl.csproj" />
+﻿<Properties StartupItem="Client.iOS10.Pcl/Client.iOS10.Pcl.csproj">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneSimulatorTarget.IPhone6.8.4" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Client.iOS10.Pcl/Info.plist">
+    <Files>
+      <File FileName="Client.iOS10.Pcl/Info.plist" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>

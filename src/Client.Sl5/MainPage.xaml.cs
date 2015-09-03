@@ -17,7 +17,7 @@ namespace Client.Sl5
         public MainPage()
         {
             InitializeComponent();
-            client = new JsonServiceClient("http://localhost:81/");
+            client = new JsonServiceClient("http://localhost:2000/");
         }
 
         private void btnAsync_Click(object sender, RoutedEventArgs e)
@@ -69,7 +69,7 @@ namespace Client.Sl5
             {
                 try
                 {
-                    var client = new JsonServiceClient("http://localhost:81/")
+                    var client = new JsonServiceClient("http://localhost:2000/")
                     {
                         //this tries to access UI component which is invalid in bg thread
                         ShareCookiesWithBrowser = false

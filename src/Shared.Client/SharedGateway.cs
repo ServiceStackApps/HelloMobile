@@ -10,7 +10,7 @@ namespace Shared.Client
 
         public SharedGateway(string url = null)
         {
-            ServiceClient = new JsonServiceClient(url ?? "http://localhost:81/");
+            ServiceClient = new JsonServiceClient(url ?? "http://localhost:2000/");
         }
 
         public async Task<string> SayHello(string name)

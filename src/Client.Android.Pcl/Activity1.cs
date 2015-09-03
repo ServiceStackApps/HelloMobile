@@ -30,8 +30,8 @@ namespace Client.Android.Pcl
 
             //10.0.2.2 = loopback
             //http://developer.android.com/tools/devices/emulator.html
-            var client = new JsonServiceClient("http://10.0.2.2:81/");
-            var gateway = new SharedGateway("http://10.0.2.2:81/");
+            var client = new JsonServiceClient("http://10.0.2.2:2000/");
+            var gateway = new SharedGateway("http://10.0.2.2:2000/");
 
             btnSync.Click += delegate
             {

@@ -22,7 +22,7 @@ namespace Client.WinStore.Pcl
         {
             this.InitializeComponent();
             //WinStorePclExportClient.Configure();
-            client = new JsonServiceClient("http://localhost:81/");
+            client = new JsonServiceClient("http://localhost:2000/");
         }
 
         /// <summary>

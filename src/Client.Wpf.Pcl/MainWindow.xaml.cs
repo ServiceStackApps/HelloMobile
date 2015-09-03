@@ -18,7 +18,7 @@ namespace Client.Wpf.Pcl
         {
             InitializeComponent();
             //Net40PclExportClient.Configure();
-            client = new JsonServiceClient("http://localhost:81/");
+            client = new JsonServiceClient("http://localhost:2000/");
         }
 
         private void btnSync_Click(object sender, RoutedEventArgs e)

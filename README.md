@@ -48,6 +48,28 @@ Configure all `JsonHttpClient` instances to use ModernHttpClient's NativeMessage
 JsonHttpClient.GlobalHttpMessageHandlerFactory = () => new NativeMessageHandler()
 ```
 
+### [Cache Aware Service Clients](https://github.com/ServiceStack/ServiceStack/wiki/Cache-Aware-Clients)
+
+When caching is enabled on Services, the Cache-aware Service Clients can dramatically improve performance by eliminating server requests entirely as well as reducing bandwidth for re-validated requests. They also offer an additional layer of resiliency as re-validated requests that result in Errors will transparently fallback to using pre-existing locally cached responses. For bandwidth-constrained environments like Mobile Apps they can dramatically improve the User Experience.
+
+The Cache-Aware clients implement the full `IServiceClient` interface so they should be an easy drop-in enhancement for existing Apps:
+
+```csharp
+IServiceClient client = new JsonServiceClient(baseUrl).WithCache(); 
+
+//equivalent to:
+IServiceClient client = new CachedServiceClient(new JsonServiceClient(baseUrl));
+```
+
+Likewise for the HttpClient-based `JsonHttpClient`:
+
+```csharp
+IServiceClient client = new JsonHttpClient(baseUrl).WithCache(); 
+
+//equivalent to:
+IServiceClient client = new CachedHttpClient(new JsonHttpClient(baseUrl));
+```
+
 ### Re-using DTO's in PCL Clients
 
 We get great re-use thanks to ServiceStack's design of having most providers implementing interfaces, which combined with DTO's having minimal dependencies, only a reference to **ServiceStack.Interfaces** is required to share any higher-level functionality that consumes ServiceStack services across most platforms. 

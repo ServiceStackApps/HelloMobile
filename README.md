@@ -50,7 +50,7 @@ JsonHttpClient.GlobalHttpMessageHandlerFactory = () => new NativeMessageHandler(
 
 ### [Cache Aware Service Clients](https://github.com/ServiceStack/ServiceStack/wiki/Cache-Aware-Clients)
 
-When caching is enabled on Services, the Cache-aware Service Clients can dramatically improve performance by eliminating server requests entirely as well as reducing bandwidth for re-validated requests. They also offer an additional layer of resiliency as re-validated requests that result in Errors will transparently fallback to using pre-existing locally cached responses. For bandwidth-constrained environments like Mobile Apps they can dramatically improve the User Experience.
+When [caching is enabled on Services](https://github.com/ServiceStack/ServiceStack/wiki/HTTP-Caching), the Cache-aware Service Clients can dramatically improve performance by eliminating server requests entirely as well as reducing bandwidth for re-validated requests. They also offer an additional layer of resiliency as re-validated requests that result in Errors will transparently fallback to using pre-existing locally cached responses. For bandwidth-constrained environments like Mobile Apps they can dramatically improve the User Experience.
 
 The Cache-Aware clients implement the full `IServiceClient` interface so they should be an easy drop-in enhancement for existing Apps:
 

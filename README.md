@@ -21,7 +21,7 @@ This project contains example applications on the following platforms:
 Most clients make use of ServiceStack's new PCL support which are contained in the following NuGet packages:
 
   - ServiceStack.Interfaces
-    - PCL Profiles: iOS, Android, Windows8, .NET 4.0, Silverlight5, WP8 (Profile136)
+    - PCL Profiles: iOS, Android, Windows8, .NET 4.0, Silverlight5, Windows Phone 8.1 (Profile 328)
   - ServiceStack.Client
     - PCL Profiles: iOS, Android, Windows8, .NET 4.5 (Profile7)
     - Custom builds: NET40, Silverlight 5

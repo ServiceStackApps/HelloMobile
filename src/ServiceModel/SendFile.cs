@@ -2,14 +2,16 @@
 
 namespace ServiceModel
 {
-    public class UploadFile
+    public class SendFile
     {
         public string Name { get; set; }
     }
 
-    public class UploadFileResponse : IReturn<UploadFile>
+    public class SendFileResponse : IReturn<SendFile>
     {
         public string Name { get; set; }
         public long FileSize { get; set; }
+
+        public ResponseStatus ResponseStatus { get; set; }
     }
 }

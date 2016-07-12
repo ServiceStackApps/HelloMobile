@@ -75,8 +75,8 @@ namespace Client.Sl5
                         ShareCookiesWithBrowser = false
                     };
                     var fileStream = new MemoryStream("content body".ToUtf8Bytes());
-                    var response = client.PostFileWithRequest<UploadFileResponse>(
-                        fileStream, "file.txt", new UploadFile { Name = name });
+                    var response = client.PostFileWithRequest<SendFileResponse>(
+                        fileStream, "file.txt", new SendFile { Name = name });
 
                     Deployment.Current.Dispatcher.BeginInvoke(() =>
                     {

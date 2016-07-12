@@ -35,7 +35,7 @@
   <ItemGroup>
     <Compile Include="Hello.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UploadFile.cs" />
+    <Compile Include="SendFile.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="ServiceStack.Interfaces, Version=4.0.0.0, Culture=neutral, PublicKeyToken=e06fbc6124f57c43, processorArchitecture=MSIL">

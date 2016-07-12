@@ -43,9 +43,9 @@ namespace Server.HttpListener
             return response;
         }
 
-        public object Any(UploadFile request)
+        public object Any(SendFile request)
         {
-            var response = new UploadFileResponse {
+            var response = new SendFileResponse {
                 Name = request.Name,
             };
 

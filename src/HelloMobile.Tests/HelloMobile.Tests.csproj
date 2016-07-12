@@ -30,20 +30,20 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="nunit.framework, Version=2.6.4.14350, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
-      <HintPath>..\packages\NUnit.2.6.4\lib\nunit.framework.dll</HintPath>
+    <Reference Include="nunit.framework, Version=3.4.1.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
+      <HintPath>..\packages\NUnit.3.4.1\lib\net45\nunit.framework.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="ServiceStack.Client">
-      <HintPath>..\packages\ServiceStack.Client.4.0.46\lib\net40\ServiceStack.Client.dll</HintPath>
+    <Reference Include="ServiceStack.Client, Version=4.0.60.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ServiceStack.Client.4.0.60\lib\net40\ServiceStack.Client.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="ServiceStack.Interfaces, Version=4.0.0.0, Culture=neutral, PublicKeyToken=e06fbc6124f57c43, processorArchitecture=MSIL">
-      <HintPath>..\packages\ServiceStack.Interfaces.4.0.46\lib\portable-wp80+sl5+net40+win8+monotouch+monoandroid+xamarin.ios10\ServiceStack.Interfaces.dll</HintPath>
+      <HintPath>..\packages\ServiceStack.Interfaces.4.0.60\lib\portable-wp80+sl5+net40+win8+wpa81+monotouch+monoandroid+xamarin.ios10\ServiceStack.Interfaces.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="ServiceStack.Text">
-      <HintPath>..\packages\ServiceStack.Text.4.0.46\lib\net40\ServiceStack.Text.dll</HintPath>
+    <Reference Include="ServiceStack.Text, Version=4.0.60.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ServiceStack.Text.4.0.60\lib\net40\ServiceStack.Text.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />

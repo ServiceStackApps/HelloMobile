@@ -73,16 +73,16 @@
       <HintPath>..\packages\Microsoft.Bcl.Async.1.0.168\lib\sl4\Microsoft.Threading.Tasks.Extensions.Silverlight.dll</HintPath>
     </Reference>
     <Reference Include="mscorlib" />
-    <Reference Include="ServiceStack.Client">
-      <HintPath>..\packages\ServiceStack.Client.4.0.46\lib\sl5\ServiceStack.Client.dll</HintPath>
+    <Reference Include="ServiceStack.Client, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ServiceStack.Client.4.0.60\lib\sl5\ServiceStack.Client.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="ServiceStack.Interfaces">
-      <HintPath>..\packages\ServiceStack.Interfaces.4.0.46\lib\portable-wp80+sl5+net40+win8+monotouch+monoandroid+xamarin.ios10\ServiceStack.Interfaces.dll</HintPath>
+    <Reference Include="ServiceStack.Interfaces, Version=4.0.0.0, Culture=neutral, PublicKeyToken=e06fbc6124f57c43, processorArchitecture=MSIL">
+      <HintPath>..\packages\ServiceStack.Interfaces.4.0.60\lib\portable-wp80+sl5+net40+win8+wpa81+monotouch+monoandroid+xamarin.ios10\ServiceStack.Interfaces.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="ServiceStack.Text">
-      <HintPath>..\packages\ServiceStack.Text.4.0.46\lib\sl5\ServiceStack.Text.dll</HintPath>
+    <Reference Include="ServiceStack.Text, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ServiceStack.Text.4.0.60\lib\sl5\ServiceStack.Text.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System.ComponentModel.DataAnnotations, Version=5.0.5.0, Culture=neutral, PublicKeyToken=ddd0da4d3e678217, processorArchitecture=MSIL" />

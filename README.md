@@ -70,6 +70,18 @@ IServiceClient client = new JsonHttpClient(baseUrl).WithCache();
 IServiceClient client = new CachedHttpClient(new JsonHttpClient(baseUrl));
 ```
 
+### [Encrypted Service Clients for iOS, Android and OSX](https://github.com/ServiceStack/ServiceStack/wiki/Encrypted-Messaging#encrypted-service-client)
+
+The `EncryptedServiceClient` is available in Xamarin iOS, Android and OSX clients which can benefit from 
+transparent encrypted service client requests without needing to configure back-end HTTP servers with SSL:
+
+```csharp
+var client = new JsonServiceClient(BaseUrl);
+IEncryptedClient encryptedClient = client.GetEncryptedClient(publicKeyXml);
+
+var response = encryptedClient.Send(new Hello { Name = "World" });
+```
+
 ### Re-using DTO's in PCL Clients
 
 We get great re-use thanks to ServiceStack's design of having most providers implementing interfaces, which combined with DTO's having minimal dependencies, only a reference to **ServiceStack.Interfaces** is required to share any higher-level functionality that consumes ServiceStack services across most platforms. 

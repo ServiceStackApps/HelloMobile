@@ -2,7 +2,7 @@ Hello ServiceStack Mobile Clients!
 ==================================
 
 This project shows a number of different .NET clients applications communicating with ServiceStack back-end services
-using the Sync, Task-based Async and C# async/await APIs, available in [ServiceStack's typed .NET clients](https://github.com/ServiceStack/ServiceStack/wiki/C%23-client).
+using the Sync, Task-based Async and C# async/await APIs, available in [ServiceStack's typed .NET clients](http://docs.servicestack.net/csharp-client).
 
 ### Client Applications
 
@@ -12,22 +12,7 @@ This project contains example applications on the following platforms:
 
   - Xamarin.iOS
   - Xamarin.Android
-  - Windows Store 
   - WPF app using .NET 4.5 PCL support
-  - Silverlight 5
-
-## Portable Class Library support
-
-Most clients make use of ServiceStack's new PCL support which are contained in the following NuGet packages:
-
-  - ServiceStack.Interfaces
-    - PCL Profiles: iOS, Android, Windows8, .NET 4.0, Silverlight5, Windows Phone 8.1 (Profile 328)
-  - ServiceStack.Client
-    - PCL Profiles: iOS, Android, Windows8, .NET 4.5 (Profile7)
-    - Custom builds: NET40, Silverlight 5
-  - ServiceStack.Text
-    - PCL Profiles: iOS, Android, Windows8, .NET 4.5 (Profile7)
-    - Custom builds: NET40, Silverlight 5
  
 ### Install
 
@@ -40,7 +25,7 @@ Alternatively you can instead use `JsonHttpClient` from:
 
     PM> Install-Package ServiceStack.HttpClient
 
-Which as it's based on Microsoft's new async HttpClient can be [configured to be used with ModernHttpClient](https://github.com/ServiceStack/ServiceStack/wiki/C%23-client#modernhttpclient) which provides a thin wrapper around iOS's native `NSURLSession` or `OkHttp` client on Android, offering improved performance and stability for mobile connectivity. 
+Which as it's based on Microsoft's new async HttpClient can be [configured to be used with ModernHttpClient](http://docs.servicestack.net/csharp-client#jsonhttpclient) which provides a thin wrapper around iOS's native `NSURLSession` or `OkHttp` client on Android, offering improved performance and stability for mobile connectivity. 
 
 Configure all `JsonHttpClient` instances to use ModernHttpClient's NativeMessageHandler with:
 
@@ -48,9 +33,9 @@ Configure all `JsonHttpClient` instances to use ModernHttpClient's NativeMessage
 JsonHttpClient.GlobalHttpMessageHandlerFactory = () => new NativeMessageHandler()
 ```
 
-### [Cache Aware Service Clients](https://github.com/ServiceStack/ServiceStack/wiki/Cache-Aware-Clients)
+### [Cache Aware Service Clients](http://docs.servicestack.net/cache-aware-clients)
 
-When [caching is enabled on Services](https://github.com/ServiceStack/ServiceStack/wiki/HTTP-Caching), the Cache-aware Service Clients can dramatically improve performance by eliminating server requests entirely as well as reducing bandwidth for re-validated requests. They also offer an additional layer of resiliency as re-validated requests that result in Errors will transparently fallback to using pre-existing locally cached responses. For bandwidth-constrained environments like Mobile Apps they can dramatically improve the User Experience.
+When [caching is enabled on Services](http://docs.servicestack.net/http-caching), the Cache-aware Service Clients can dramatically improve performance by eliminating server requests entirely as well as reducing bandwidth for re-validated requests. They also offer an additional layer of resiliency as re-validated requests that result in Errors will transparently fallback to using pre-existing locally cached responses. For bandwidth-constrained environments like Mobile Apps they can dramatically improve the User Experience.
 
 The Cache-Aware clients implement the full `IServiceClient` interface so they should be an easy drop-in enhancement for existing Apps:
 
@@ -70,7 +55,7 @@ IServiceClient client = new JsonHttpClient(baseUrl).WithCache();
 IServiceClient client = new CachedHttpClient(new JsonHttpClient(baseUrl));
 ```
 
-### [Encrypted Service Clients for iOS, Android and OSX](https://github.com/ServiceStack/ServiceStack/wiki/Encrypted-Messaging#encrypted-service-client)
+### [Encrypted Service Clients for iOS, Android and OSX](http://docs.servicestack.net/encrypted-messaging#encrypted-service-client)
 
 The `EncryptedServiceClient` is available in Xamarin iOS, Android and OSX clients which can benefit from 
 transparent encrypted service client requests without needing to configure back-end HTTP servers with SSL:
@@ -82,11 +67,9 @@ IEncryptedClient encryptedClient = client.GetEncryptedClient(publicKeyXml);
 var response = encryptedClient.Send(new Hello { Name = "World" });
 ```
 
-### Re-using DTO's in PCL Clients
+### Re-using DTO's in Clients
 
 We get great re-use thanks to ServiceStack's design of having most providers implementing interfaces, which combined with DTO's having minimal dependencies, only a reference to **ServiceStack.Interfaces** is required to share any higher-level functionality that consumes ServiceStack services across most platforms. 
-
-A greater level of binary-level reusability is enabled between iOS, Android, Windows8, .NET 4.5 platforms which are also able to share concrete implementations in (Profile7) portable class libraries. 
 
 Other supported platforms may still achieve source-level code-reuse with VS.NET's shared projects support or by creating a stub project (compiled for their platform) and linking to the existing source files. 
 
@@ -107,11 +90,11 @@ Check that it's up and running by going to: `http://localhost:81` in a web brows
 
 Follow this guide to [Add NuGet Package Manager to Xamarin Studio](http://barambani.wordpress.com/2013/10/07/add-nuget-package-manager-and-servicestack-to-xamarin-studio-projects-2/) so you can easily reference NuGet packages inside Xamarin Studio.
 
-## [Xamarin.Android Client](https://github.com/ServiceStack/Hello/tree/master/src/Client.Android.Pcl)
+## [Xamarin.Android Client](https://github.com/ServiceStackApps/HelloMobile/tree/master/src/Client.Android)
 
-[![Android Screenshot](https://raw.githubusercontent.com/ServiceStackApps/HelloMobile/master/screenshots//clients-android.png)](https://github.com/ServiceStack/Hello/tree/master/src/Client.Android.Pcl)
+[![Android Screenshot](https://raw.githubusercontent.com/ServiceStackApps/HelloMobile/master/screenshots//clients-android.png)](https://github.com/ServiceStackApps/HelloMobile/tree/master/src/Client.Android)
 
-The Android example is contained in the [Client.Android.Pcl](https://github.com/ServiceStack/Hello/tree/master/src/Client.Android.Pcl) project.
+The Android example is contained in the [Client.Android](https://github.com/ServiceStackApps/HelloMobile/tree/master/src/Client.Android) project.
 
 Xamarin.Android makes creating Android applications with C# pretty trivial where you can visually design the UI from within VS.NET 
 using the in-built visual designer. The worst part about developing for Android is the very slow turn around times when running your application
@@ -129,7 +112,7 @@ To create our simple Hello World example, it as just a matter of:
   4. Providing an id for each widget, e.g in the format `@+id/txtName`
 
 After building the project the id's are materialized into C# constants, available in the `Resource.Id.*` nested classes which you can use 
-in the custom `Activity.OnCreate()` method in your [Activity1.cs](https://github.com/ServiceStack/Hello/blob/master/src/Client.Android.Pcl/Activity1.cs) 
+in the custom `Activity.OnCreate()` method in your [Activity1.cs](https://github.com/ServiceStack/Hello/blob/master/src/Client.Android/Activity1.cs) 
 to access the UI controls, e.g:
 
 ```csharp
@@ -154,7 +137,7 @@ we need to use the special **10.0.2.2** alias. Other special device IP's can be 
 
 ### Calling ServiceStack services
 
-From then on calling ServiceStack services is the same as any other [C# Client](https://github.com/ServiceStack/ServiceStack/wiki/C%23-client), 
+From then on calling ServiceStack services is the same as any other [C# Client](http://docs.servicestack.net/csharp-client), 
 E.g. you can call the Sync APIs with:
 
 ```csharp
@@ -216,12 +199,12 @@ A temporary solution was published on [Xamarin's Forums](http://forums.xamarin.c
   1. [Download the missing dls](http://cdn.vanillaforums.com/xamarin.vanillaforums.com/FileUpload/87/0ff56446b59dd94ef0e42f58bda210.zip)
   2. Copy them to: `C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\MonoAndroid\v1.0\`
 
-## [Xamarin.iOS Client](https://github.com/ServiceStack/Hello/tree/master/src/Client.iOS.Pcl)
+## [Xamarin.iOS Client](https://github.com/ServiceStackApps/HelloMobile/tree/master/src/Client.iOS)
 
-[![iPhone Screenshot](https://raw.githubusercontent.com/ServiceStackApps/HelloMobile/master/screenshots//clients-ios.png)](https://github.com/ServiceStack/Hello/tree/master/src/Client.iOS.Pcl)
+[![iPhone Screenshot](https://raw.githubusercontent.com/ServiceStackApps/HelloMobile/master/screenshots//clients-ios.png)](https://github.com/ServiceStackApps/HelloMobile/tree/master/src/Client.iOS)
 
 
-The [iOS Client](https://github.com/ServiceStack/Hello/tree/master/src/Client.iOS.Pcl) is the only project in this solution not created with VS.NET. You can open the iOS project in Xamarin Studio by opening the **Hello.Xamarin.sln**.
+The [iOS Client](https://github.com/ServiceStackApps/HelloMobile/tree/master/src/Client.iOS) is the only project in this solution not created with VS.NET. You can open the iOS project in Xamarin Studio by opening the **Hello.Xamarin.sln**.
 
 Whilst it's possible to develop 
 [iOS Apps in VS.NET](http://docs.xamarin.com/guides/ios/getting_started/introduction_to_xamarin_ios_for_visual_studio/), 
@@ -254,12 +237,6 @@ Any Outlets defined are exposed as properties whilst any Actions are available a
 With all elements and actions in place you can start add your C# implementation in your main [*ViewController.cs](https://github.com/ServiceStack/Hello/blob/master/src/Client.iOS/Client_iOSViewController.cs) file.
 
 ### Initializing PCL Client
-
-The first line of code is to register the PCL Provider for iOS, normally this is automatically inferred but as it sometimes doesn't get picked up for iOS, it's recommended to explicitly register it with:
-
-```csharp
-IosPclExportClient.Configure();
-```
 
 Calling the service is similar to Android where instead of using `localhost` you need to use an IP Address for your local dev machine where ServiceStack is running. 
 You can use the `ifconfig` command line utility in OSX to find out what the network IP of your dev workstation is, e.g `10.0.0.8`:
@@ -315,21 +292,21 @@ partial void btnAsync_Click (NSObject sender)
 }
 ```
 
-## [Windows 8 Store Client](https://github.com/ServiceStack/Hello/tree/master/src/Client.WinStore.Pcl)
+## [WPF Client](https://github.com/ServiceStackApps/HelloMobile/tree/master/src/Client.Wpf)
 
-[![Windows Store Screenshot](https://raw.githubusercontent.com/ServiceStackApps/HelloMobile/master/screenshots//clients-winstore.png)](https://github.com/ServiceStack/Hello/tree/master/src/Client.WinStore.Pcl)
+[![WPF Screenshot](https://raw.githubusercontent.com/ServiceStackApps/HelloMobile/master/screenshots//clients-wpf.png)](https://github.com/ServiceStackApps/HelloMobile/tree/master/src/Client.Wpf)
 
-If you've done any previous XAML development, Visual Studio provides a great Development experience for Windows 8 with fast iteration times and a great debugging experience.
-The one annoyance is a result of Windows Apps taking up the entire screen making it tedious to switch between the running app and debugging environment.
+If you've done any previous XAML development, Visual Studio provides a great Development experience for WPF with fast iteration times and a great debugging experience.
+The one annoyance is a result of WPF Apps taking up the entire screen making it tedious to switch between the running app and debugging environment.
 
-Other than that, developing apps is as straight forward as it can be, just double click the `MainPage.xaml` file to open it in the designer where you can drag on UI Elements to create the UI.
+Other than that, developing apps is as straight forward as it can be, just double click the `MainWindow.xaml` file to open it in the designer where you can drag on UI Elements to create the UI.
 Like most VS.NET visual designers you can simply double-click a button to add an event handler. To access controls in the code-behind file you just need to assign each a name in either the
 property grid or by directly editing the XAML source.
 
 Unlike debugging Android and iOS devices, Windows Store Apps lets you use `localhost` to reference your local dev workstation that you can use to refer to your running ServiceStack instance, e.g:
 
 ```csharp
-client = new JsonServiceClient("http://localhost:81/");
+client = new JsonServiceClient("http://localhost:2000/");
 ```
 
 Implementing a click event is just a matter of double-clicking the UI Button and filling in the blank with your implementation, which remains the same for the Synchronous API:
@@ -375,45 +352,4 @@ private void btnAsync_Click(object sender, RoutedEventArgs e)
         .Error(ex => lblResults.Text = ex.ToString());
 }
 ```
-
-## [WPF Client](https://github.com/ServiceStack/Hello/tree/master/src/Client.Wpf.Pcl)
-
-[![WPF Screenshot](https://raw.githubusercontent.com/ServiceStackApps/HelloMobile/master/screenshots//clients-wpf.png)](https://github.com/ServiceStack/Hello/tree/master/src/Client.Wpf.Pcl)
-
-The WPF development experience is very similar to the Windows Store app, where even the source code for declaring and implementing the button event handlers is exactly the same.
-The only difference is that the Main window is called **MainWindow.xaml** instead of **MainPage.xaml**.
-
-## [Silverlight 5 Client](https://github.com/ServiceStack/Hello/tree/master/src/Client.Sl5)
-
-[![Silverlight 5 Screenshot](https://raw.githubusercontent.com/ServiceStackApps/HelloMobile/master/screenshots//clients-silverlight.png)](https://github.com/ServiceStack/Hello/tree/master/src/Client.Sl5)
-
-The Silverlight project is different to the other clients in a couple of ways, firstly whilst it references the same NuGet packages, it makes use of Silverlight-specific **ServiceStack.Text.dll** and **ServiceStack.Client.dll** builds which aren't binary compatible with the other client platforms, so any high-level projects that use these impl dlls can't be shared with other PCL projects.
-
-Another difference when creating a new Silverlight Application is that it also creates a separate 
-[Client.Sl5.Web](https://github.com/ServiceStack/Hello/tree/master/src/Client.Sl5.Web) web deployment project where the compiled `Client.Sl5.xap` Silverlight deployment package gets hosted from. As this package is executed within the context of a web browser it must also comply with browser limitations like CORS limitations. To enable communication with our remote ServiceStack instance, the `CorsFeature` Plugin and **clientaccesspolicy.xml** and **crossdomain.xml** permissions were added to the ServiceStack hosts.
-
-A limitation in Silverlgiht is that only Asynchronous API's are supported, but like the previous XAML-based Windows Store and WPF clients, the source code remains exactly the same:
-
-```csharp
-private async void btnAwait_Click(object sender, RoutedEventArgs e)
-{
-    try {
-        var response = await client.GetAsync(new Hello { Name = txtName.Text });
-        lblResults.Content = response.Result;
-    }
-    catch (Exception ex) {
-        lblResults.Content = ex.ToString();
-    }
-}
-```
-
-```csharp
-private void btnAsync_Click(object sender, RoutedEventArgs e)
-{
-    client.GetAsync(new Hello { Name = txtName.Text })
-        .Success(r => lblResults.Content = r.Result)
-        .Error(ex => lblResults.Content = ex.ToString());
-}
-```
-
 

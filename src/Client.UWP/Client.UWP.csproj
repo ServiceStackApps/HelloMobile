@@ -135,9 +135,13 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Shared.Client.Stub\Shared.Client.Stub.csproj">
-      <Project>{1f3797dc-8dbe-4407-b44b-05c68d472e89}</Project>
-      <Name>Shared.Client.Stub</Name>
+    <ProjectReference Include="..\ServiceModel\ServiceModel.csproj">
+      <Project>{c513ad2f-874a-4571-afef-49b961668803}</Project>
+      <Name>ServiceModel</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Shared.Client\Shared.Client.csproj">
+      <Project>{ecc2bd2a-33ee-4959-ad59-a148ef3b1de8}</Project>
+      <Name>Shared.Client</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">

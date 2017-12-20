@@ -1,5 +1,4 @@
 ﻿using System;
-using System.IO;
 using Android.App;
 using Android.Widget;
 using Android.OS;
@@ -12,42 +11,34 @@ namespace Client.Android
     [Activity(Label = "Client.Android", MainLauncher = true, Icon = "@drawable/icon")]
     public class Activity1 : Activity
     {
+        //10.0.2.2 = loopback
+        //http://developer.android.com/tools/devices/emulator.html
+        private const string BaseUrl = "http://10.0.2.2:2000/";
+
+        public IServiceClient CreateClient() => new JsonServiceClient(BaseUrl);
+
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
-            //AndroidPclExportClient.Configure();
 
             // Set our view from the "main" layout resource
             SetContentView(Resource.Layout.Main);
 
             var btnSync = FindViewById<Button>(Resource.Id.btnSync);
             var btnAsync = FindViewById<Button>(Resource.Id.btnAsync);
-            var btnAwait = FindViewById<Button>(Resource.Id.btnAwait);
+            var btnGateway = FindViewById<Button>(Resource.Id.btnGateway);
             var btnAuth = FindViewById<Button>(Resource.Id.btnAuth);
-            var btnShared = FindViewById<Button>(Resource.Id.btnShared);
-            var txtName = FindViewById<EditText>(Resource.Id.txtName);
+            var btnJwt = FindViewById<Button>(Resource.Id.btnJwt);
+            var btnEncrypted = FindViewById<Button>(Resource.Id.btnEncrypted);
             var lblResults = FindViewById<TextView>(Resource.Id.lblResults);
-
-            //10.0.2.2 = loopback
-            //http://developer.android.com/tools/devices/emulator.html
-            var client = new JsonServiceClient("http://10.0.2.2:2000/");
-            var gateway = new SharedGateway("http://10.0.2.2:2000/");
 
             btnSync.Click += delegate
             {
                 try
                 {
-                    var response = client.Get(new Hello { Name = txtName.Text });
+                    var client = CreateClient();
+                    var response = client.Get(new Hello { Name = "Sync" });
                     lblResults.Text = response.Result;
-
-                    //using (var ms = new MemoryStream("Contents".ToUtf8Bytes()))
-                    //{
-                    //    ms.Position = 0;
-                    //    var fileResponse = client.PostFileWithRequest<HelloResponse>(
-                    //        "/hello", ms, "filename.txt", new Hello { Name = txtName.Text });
-
-                    //    lblResults.Text = fileResponse.Result;
-                    //}
                 }
                 catch (Exception ex)
                 {
@@ -55,19 +46,27 @@ namespace Client.Android
                 }
             };
 
-            btnAsync.Click += delegate
-            {
-                client.GetAsync(new Hello { Name = txtName.Text })
-                    .Success(response => lblResults.Text = response.Result)
-                    .Error(ex => lblResults.Text = ex.ToString());
-            };
-
-            btnAwait.Click += async delegate
+            btnAsync.Click += async delegate
             {
                 try
                 {
-                    var response = await client.GetAsync(new Hello { Name = txtName.Text });
+                    var client = CreateClient();
+                    var response = await client.GetAsync(new Hello { Name = "Async" });
                     lblResults.Text = response.Result;
+                }
+                catch (Exception ex)
+                {
+                    lblResults.Text = ex.ToString();
+                }
+            };
+
+            btnGateway.Click += async delegate
+            {
+                try
+                {
+                    var gateway = new SharedGateway(BaseUrl);
+                    var greeting = await gateway.SayHello("Gateway");
+                    lblResults.Text = greeting;
                 }
                 catch (Exception ex)
                 {
@@ -79,6 +78,7 @@ namespace Client.Android
             {
                 try
                 {
+                    var client = CreateClient();
                     await client.PostAsync(new Authenticate
                     {
                         provider = "credentials",
@@ -86,7 +86,7 @@ namespace Client.Android
                         Password = "pass",
                     });
 
-                    var response = await client.GetAsync(new HelloAuth { Name = "Secure " + txtName.Text });
+                    var response = await client.GetAsync(new HelloAuth { Name = "Auth" });
 
                     lblResults.Text = response.Result;
                 }
@@ -96,12 +96,43 @@ namespace Client.Android
                 }
             };
 
-            btnShared.Click += async delegate
+            btnJwt.Click += async delegate
             {
                 try
                 {
-                    var greeting = await gateway.SayHello(txtName.Text);
-                    lblResults.Text = greeting;
+                    var authClient = CreateClient();
+                    var authResponse = await authClient.PostAsync(new Authenticate
+                    {
+                        provider = "credentials",
+                        UserName = "user",
+                        Password = "pass",
+                    });
+
+                    var client = new JsonServiceClient(BaseUrl)
+                    {
+                        BearerToken = authResponse.BearerToken //JWT
+                    };
+
+                    var response = await client.GetAsync(new HelloAuth { Name = "JWT Auth" });
+
+                    lblResults.Text = response.Result;
+                }
+                catch (Exception ex)
+                {
+                    lblResults.Text = ex.ToString();
+                }
+            };
+
+            btnEncrypted.Click += async delegate
+            {
+                try
+                {
+                    var client = (IJsonServiceClient)CreateClient();
+                    var encryptedClient = client.GetEncryptedClient(Config.PublicKeyXml);
+
+                    var response = await encryptedClient.SendAsync(new Hello { Name = "Encrypted Client" });
+
+                    lblResults.Text = response.Result;
                 }
                 catch (Exception ex)
                 {

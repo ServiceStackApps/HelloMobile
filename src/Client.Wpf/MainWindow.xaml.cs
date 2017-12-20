@@ -4,28 +4,27 @@ using ServiceModel;
 using ServiceStack;
 using Shared.Client;
 
-namespace Client.Wpf.Pcl
+namespace Client.Wpf
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window
     {
-        private readonly JsonServiceClient client;
-        SharedGateway gateway = new SharedGateway();
-
         public MainWindow()
         {
             InitializeComponent();
-            //Net40PclExportClient.Configure();
-            client = new JsonServiceClient("http://localhost:2000/");
         }
+
+        private const string BaseUrl = Config.BaseUrl;
+        public IServiceClient CreateClient() => new JsonServiceClient(BaseUrl);
 
         private void btnSync_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                var response = client.Get(new Hello { Name = txtName.Text });
+                var client = CreateClient();
+                var response = client.Get(new Hello { Name = "Sync" });
                 lblResults.Text = response.Result;
             }
             catch (Exception ex)
@@ -34,39 +33,12 @@ namespace Client.Wpf.Pcl
             }
         }
 
-        private void btnAsync_Click(object sender, RoutedEventArgs e)
-        {
-            client.GetAsync(new Hello { Name = txtName.Text })
-                .Success(r => lblResults.Text = r.Result)
-                .Error(ex => lblResults.Text = ex.ToString());
-        }
-
-        private async void btnAwait_Click(object sender, RoutedEventArgs e)
+        private async void btnAsync_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                var response = await client.GetAsync(new Hello { Name = txtName.Text });
-                lblResults.Text = response.Result;
-            }
-            catch (Exception ex)
-            {
-                lblResults.Text = ex.ToString();
-            }
-        }
-
-        private async void btnAuth_Click(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                await client.PostAsync(new Authenticate
-                {
-                    provider = "credentials",
-                    UserName = "user",
-                    Password = "pass",
-                });
-
-                var response = await client.GetAsync(new HelloAuth { Name = "Secure " + txtName.Text });
-
+                var client = CreateClient();
+                var response = await client.GetAsync(new Hello { Name = "Async" });
                 lblResults.Text = response.Result;
             }
             catch (Exception ex)
@@ -79,8 +51,75 @@ namespace Client.Wpf.Pcl
         {
             try
             {
-                var greeting = await gateway.SayHello(txtName.Text);
+                var gateway = new SharedGateway(BaseUrl);
+                var greeting = await gateway.SayHello("Gateway");
                 lblResults.Text = greeting;
+            }
+            catch (Exception ex)
+            {
+                lblResults.Text = ex.ToString();
+            }
+        }
+
+        private async void btnAuth_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                var client = CreateClient();
+                await client.PostAsync(new Authenticate
+                {
+                    provider = "credentials",
+                    UserName = "user",
+                    Password = "pass",
+                });
+
+                var response = await client.GetAsync(new HelloAuth { Name = "Auth" });
+
+                lblResults.Text = response.Result;
+            }
+            catch (Exception ex)
+            {
+                lblResults.Text = ex.ToString();
+            }
+        }
+
+        private async void btnJwt_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                var authClient = CreateClient();
+                var authResponse = await authClient.PostAsync(new Authenticate
+                {
+                    provider = "credentials",
+                    UserName = "user",
+                    Password = "pass",
+                });
+
+                var client = new JsonServiceClient(BaseUrl)
+                {
+                    BearerToken = authResponse.BearerToken //JWT
+                };
+
+                var response = await client.GetAsync(new HelloAuth { Name = "JWT Auth" });
+
+                lblResults.Text = response.Result;
+            }
+            catch (Exception ex)
+            {
+                lblResults.Text = ex.ToString();
+            }
+        }
+
+        private async void btnEncrypted_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                var client = (IJsonServiceClient)CreateClient();
+                var encryptedClient = client.GetEncryptedClient(Config.PublicKeyXml);
+
+                var response = await encryptedClient.SendAsync(new Hello { Name = "Encrypted Client" });
+
+                lblResults.Text = response.Result;
             }
             catch (Exception ex)
             {

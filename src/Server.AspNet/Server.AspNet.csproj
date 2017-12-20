@@ -90,6 +90,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Server.Common\Server.Common.csproj">
+      <Project>{f41f6b93-c1a3-4b1e-935a-535bb1c8e8cd}</Project>
+      <Name>Server.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ServiceModel\ServiceModel.csproj">
       <Project>{c513ad2f-874a-4571-afef-49b961668803}</Project>
       <Name>ServiceModel</Name>

@@ -1,5 +1,8 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
+  <!-- Workaround for https://github.com/dotnet/sdk/pull/908 -->
+  <Target Name="GetPackagingOutputs" />
+
   <PropertyGroup>
     <TargetFrameworks>net46;netstandard2.0</TargetFrameworks>
   </PropertyGroup>
@@ -7,7 +10,7 @@
   <ItemGroup>
     <PackageReference Include="ServiceStack.Client" Version="5.0.0" />
   </ItemGroup>
-
+  
   <ItemGroup>
     <ProjectReference Include="..\ServiceModel\ServiceModel.csproj" />
   </ItemGroup>

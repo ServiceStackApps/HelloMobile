@@ -10,7 +10,7 @@ namespace ServiceModel
     public class SendFileResponse : IReturn<SendFile>
     {
         public string Name { get; set; }
-        public long FileSize { get; set; }
+        public string Result { get; set; }
 
         public ResponseStatus ResponseStatus { get; set; }
     }

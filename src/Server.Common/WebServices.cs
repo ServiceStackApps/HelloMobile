@@ -8,7 +8,6 @@ namespace Server
     {
         public static void Configure(IAppHost appHost)
         {
-            //appHost.Routes.AddFromAssembly(typeof(WebServices).Assembly);
             appHost.Config.DefaultRedirectPath = "/metadata";
 
             appHost.Plugins.Add(new CorsFeature());

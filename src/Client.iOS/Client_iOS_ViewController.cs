@@ -13,7 +13,7 @@ namespace Client.iOS
         {
         }
 
-        private const string BaseUrl = "http://10.0.0.33:2000/"; //TODO: replace with your IP Address
+        private const string BaseUrl = Config.UseNetworkIp;
         public IServiceClient CreateClient() => new JsonServiceClient(BaseUrl);
 
         partial void BtnSync_TouchUpInside(UIButton sender)

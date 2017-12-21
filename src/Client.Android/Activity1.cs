@@ -11,10 +11,7 @@ namespace Client.Android
     [Activity(Label = "Client.Android", MainLauncher = true, Icon = "@drawable/icon")]
     public class Activity1 : Activity
     {
-        //10.0.2.2 = loopback
-        //http://developer.android.com/tools/devices/emulator.html
-        private const string BaseUrl = "http://10.0.2.2:2000/";
-
+        private const string BaseUrl = Config.UseAndroidLoopback;
         public IServiceClient CreateClient() => new JsonServiceClient(BaseUrl);
 
         protected override void OnCreate(Bundle bundle)

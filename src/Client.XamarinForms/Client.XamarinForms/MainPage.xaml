@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:Client.XamarinForms"
+             x:Class="Client.XamarinForms.MainPage">
+
+    <Grid Margin="10,20,0,100">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <StackLayout Grid.Row="0" Orientation="Horizontal">
+            <Button x:Name="btnSync" Text="Sync" />
+            <Button x:Name="btnAsync" Text="Async" />
+            <Button x:Name="btnGateway" Text="Gateway" />
+            <Button x:Name="btnAuth" Text="Auth" />
+            <Button x:Name="btnJwt" Text="JWT" />
+            <Button x:Name="btnEncrypted" Text="Encrypted" />
+        </StackLayout>
+
+        <Label Grid.Row="1" x:Name="lblResults" Text="" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" FontSize="36" />
+
+    </Grid>
+
+</ContentPage>

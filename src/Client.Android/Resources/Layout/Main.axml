@@ -9,7 +9,9 @@
         android:minHeight="25px"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/linearLayout2">
+        android:gravity="center"
+        android:id="@+id/linearLayout2"
+        android:layout_marginTop="10dp">
         <Button
             android:text="Sync"
             android:id="@+id/btnSync"
@@ -54,5 +56,6 @@
         android:layout_height="234.5dp"
         android:id="@+id/lblResults"
         android:padding="10px"
-        android:layout_marginBottom="175.6dp" />
+        android:layout_marginBottom="175.6dp"
+        android:gravity="center" />
 </LinearLayout>

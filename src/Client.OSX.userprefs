@@ -1,0 +1,16 @@
+﻿<Properties StartupConfiguration="{8754FB50-737A-42D9-98CB-0A97F24D3923}|Default">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Client.OSX/ViewController.designer.cs">
+    <Files>
+      <File FileName="Client.OSX/ViewController.cs" Line="53" Column="10" />
+      <File FileName="ServiceModel/Config.cs" Line="13" Column="41" />
+      <File FileName="Client.OSX/ViewController.designer.cs" Line="45" Column="1" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.ItemProperties.Client.OSX PreferredExecutionTarget="Test1" />
+  <MultiItemStartupConfigurations />
+</Properties>

@@ -11,7 +11,7 @@
     instead of the ".NET Standard 2.0" version required to be able to host ASP.NET Core Apps.
     
     Instead source code link references are used to avoid binary coupling so the DTOs reference the same 
-    ".NET Standard 2.0" version of "ServiceStack.Interfaces" that this project uses.
+    ".NET Standard 2.0" version of "ServiceStack.Interfaces.Core" that "ServiceStack.Core" references.
   -->
   <ItemGroup>
     <Compile Include="..\Server.Common\WebServices.cs" Link="WebServices.cs" />

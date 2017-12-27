@@ -27,38 +27,36 @@ namespace Server
                 PrivateKeyXml = Config.PrivateKeyXml
             });
         }
-    }
 
-    [Authenticate]
-    public class AdminServices : Service
-    {
-        public object Any(HelloAuth request)
+        public class CustomCredentialsAuthProvider : CredentialsAuthProvider
         {
-            var response = new HelloResponse { Result = "Hello, " + request.Name };
-            return response;
-        }
-    }
-
-    public class CustomCredentialsAuthProvider : CredentialsAuthProvider
-    {
-        public override bool TryAuthenticate(IServiceBase authService, string userName, string password)
-        {
-            return userName == "user" && password == "pass";
+            public override bool TryAuthenticate(IServiceBase authService, string userName, string password)
+            {
+                return userName == "user" && password == "pass";
+            }
         }
     }
 
     public class WebServices : Service
     {
-        public object Any(Hello request)
+        public object Any(Hello request) => new HelloResponse { Result = "Hello, " + request.Name };
+    }
+
+    [Authenticate]
+    public class AuthServices : Service
+    {
+        public object Any(HelloAuth request)
         {
-            var response = new HelloResponse { Result = "Hello, " + request.Name };
-
-            return response;
+            return new HelloResponse { Result = "Hello, " + request.Name };
         }
+    }
 
+    public class FileServices : Service
+    {
         public object Any(SendFile request)
         {
-            var response = new SendFileResponse {
+            var response = new SendFileResponse
+            {
                 Name = request.Name,
             };
 

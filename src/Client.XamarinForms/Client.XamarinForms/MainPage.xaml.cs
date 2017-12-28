@@ -12,19 +12,19 @@ using Xamarin.Forms.Internals;
 
 namespace Client.XamarinForms
 {
-	public partial class MainPage : ContentPage
-	{
-	    private static string BaseUrl = Device.RuntimePlatform == Device.Android ? 
-            Config.UseAndroidLoopback 
-            : Device.RuntimePlatform == Device.iOS ? 
-            Config.UseNetworkIp : 
+    public partial class MainPage : ContentPage
+    {
+        private static string BaseUrl = Device.RuntimePlatform == Device.Android ?
+            Config.UseAndroidLoopback
+            : Device.RuntimePlatform == Device.iOS ?
+            Config.UseNetworkIp :
             Config.BaseUrl;
 
         public IServiceClient CreateClient() => new JsonServiceClient(BaseUrl);
 
         public MainPage()
-		{
-			InitializeComponent();
+        {
+            InitializeComponent();
 
             btnSync.Clicked += delegate
             {
@@ -135,5 +135,5 @@ namespace Client.XamarinForms
                 }
             };
         }
-	}
+    }
 }

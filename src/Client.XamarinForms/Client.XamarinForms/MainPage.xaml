@@ -22,7 +22,8 @@
             <Button x:Name="btnEncrypted" Text="Encrypted" />
         </StackLayout>
 
-        <Label Grid.Row="1" x:Name="lblResults" Text="" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" FontSize="36" />
+        <Label Grid.Row="1" x:Name="lblResults" Text="" FontSize="36" 
+               HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
 
     </Grid>
 

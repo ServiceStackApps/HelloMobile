@@ -392,7 +392,8 @@ UWP's [MainPage.xaml.cs](https://github.com/ServiceStackApps/HelloMobile/blob/ma
         <Button x:Name="btnEncrypted" Content="Encrypted" Click="btnEncrypted_Click" />
     </StackPanel>
 
-    <TextBlock Grid.Row="1" x:Name="lblResults" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="36" />
+    <TextBlock Grid.Row="1" x:Name="lblResults" FontSize="36" 
+               HorizontalAlignment="Center" VerticalAlignment="Center" />
 
 </Grid>
 ```
@@ -615,7 +616,8 @@ For Basic Apps with Simple UI's like this no specialization was needed and you c
         <Button x:Name="btnEncrypted" Text="Encrypted" />
     </StackLayout>
 
-    <Label Grid.Row="1" x:Name="lblResults" Text="" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" FontSize="36" />
+    <Label Grid.Row="1" x:Name="lblResults" Text="" FontSize="36"
+           HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
 
 </Grid>
 ```

@@ -32,7 +32,8 @@
             <Button x:Name="btnEncrypted" Content="Encrypted" Click="btnEncrypted_Click" />
         </StackPanel>
 
-        <TextBlock Grid.Row="1" x:Name="lblResults" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="36" />
+        <TextBlock Grid.Row="1" x:Name="lblResults" FontSize="36" 
+                   HorizontalAlignment="Center" VerticalAlignment="Center" />
 
     </Grid>
 

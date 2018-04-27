@@ -31,7 +31,7 @@ namespace Tests.Client
                     },
                     issuer: jwtProvider.Issuer,
                     expireIn: jwtProvider.ExpireTokensIn,
-                    audience: jwtProvider.Audience,
+                    audiences: new []{ jwtProvider.Audience },
                     roles: new[] { "TheRole" },
                     permissions: new[] { "ThePermission" });
 

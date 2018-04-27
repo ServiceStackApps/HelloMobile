@@ -24,7 +24,7 @@
     <PackageReference Include="Microsoft.AspNetCore.Server.Kestrel" Version="2.*" />
 
     <!-- The ".Core" NuGet packages forces "net47" ASP.NET Core Apps to use .NET Standard 2.0 versions of ServiceStack -->
-    <PackageReference Include="ServiceStack.Core" Version="5.0.1" />
+    <PackageReference Include="ServiceStack.Core" Version="5.*" />
   </ItemGroup>
 
 </Project>

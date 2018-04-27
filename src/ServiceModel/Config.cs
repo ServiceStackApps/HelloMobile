@@ -10,7 +10,7 @@
 
         // When run from Device Simulator in Remote OSX or external device it needs the IP to your VS.NET Workstation
         // You may also need to open tcp port 5000 in Windows Firewall and enable wildcard IIS Express binding https://stackoverflow.com/a/8569259/85785
-        public const string UseNetworkIp = "http://10.0.0.33:5000"; //TODO: replace with your Local Network IP
+        public const string UseNetworkIp = "http://10.0.0.215:5000"; //TODO: replace with your Local Network IP
 
         public const string ListeningOn = "http://*:5000/";
 

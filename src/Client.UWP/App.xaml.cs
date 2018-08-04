@@ -52,7 +52,7 @@ namespace Client.UWP
 
                 if (e.PreviousExecutionState == ApplicationExecutionState.Terminated)
                 {
-                    //Load state from previously suspended application
+                    //TODO: Load state from previously suspended application
                 }
 
                 // Place the frame in the current Window
@@ -93,7 +93,7 @@ namespace Client.UWP
         private void OnSuspending(object sender, SuspendingEventArgs e)
         {
             var deferral = e.SuspendingOperation.GetDeferral();
-            //Save application state and stop any background activity
+            //TODO: Save application state and stop any background activity
             deferral.Complete();
         }
     }

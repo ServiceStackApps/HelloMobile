@@ -1,11 +1,11 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>netstandard2.0;net46</TargetFrameworks>
+    <TargetFrameworks>netstandard2.0;net472</TargetFrameworks>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="ServiceStack.Client" Version="5.1.1" />
+    <PackageReference Include="ServiceStack.Client" Version="5.*" />
   </ItemGroup>
   
   <ItemGroup>

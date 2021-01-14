@@ -10,7 +10,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Server.AspNet</RootNamespace>
     <AssemblyName>Server.AspNet</AssemblyName>
-    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
     <IISExpressSSLPort />
     <IISExpressAnonymousAuthentication />
@@ -19,6 +19,7 @@
     <Use64BitIISExpress />
     <UseGlobalApplicationHostFile />
     <TargetFrameworkProfile />
+    <LangVersion>default</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -39,21 +40,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="ServiceStack, Version=5.0.0.0, Culture=neutral, PublicKeyToken=02c12cbda47e6587, processorArchitecture=MSIL">
-      <HintPath>..\packages\ServiceStack.5.1.1\lib\net45\ServiceStack.dll</HintPath>
-    </Reference>
-    <Reference Include="ServiceStack.Client, Version=5.0.0.0, Culture=neutral, PublicKeyToken=02c12cbda47e6587, processorArchitecture=MSIL">
-      <HintPath>..\packages\ServiceStack.Client.5.1.1\lib\net45\ServiceStack.Client.dll</HintPath>
-    </Reference>
-    <Reference Include="ServiceStack.Common, Version=5.0.0.0, Culture=neutral, PublicKeyToken=02c12cbda47e6587, processorArchitecture=MSIL">
-      <HintPath>..\packages\ServiceStack.Common.5.1.1\lib\net45\ServiceStack.Common.dll</HintPath>
-    </Reference>
-    <Reference Include="ServiceStack.Interfaces, Version=5.0.0.0, Culture=neutral, PublicKeyToken=02c12cbda47e6587, processorArchitecture=MSIL">
-      <HintPath>..\packages\ServiceStack.Interfaces.5.1.1\lib\net45\ServiceStack.Interfaces.dll</HintPath>
-    </Reference>
-    <Reference Include="ServiceStack.Text, Version=5.0.0.0, Culture=neutral, PublicKeyToken=02c12cbda47e6587, processorArchitecture=MSIL">
-      <HintPath>..\packages\ServiceStack.Text.5.1.1\lib\net45\ServiceStack.Text.dll</HintPath>
-    </Reference>
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Net" />
     <Reference Include="System.Web.DynamicData" />
@@ -81,7 +67,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -102,6 +87,13 @@
       <Project>{ecc2bd2a-33ee-4959-ad59-a148ef3b1de8}</Project>
       <Name>Shared.Client</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="ServiceStack" Version="5.*" />
+    <PackageReference Include="ServiceStack.Client" Version="5.*" />
+    <PackageReference Include="ServiceStack.Common" Version="5.*" />
+    <PackageReference Include="ServiceStack.Interfaces" Version="5.*" />
+    <PackageReference Include="ServiceStack.Text" Version="5.*" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

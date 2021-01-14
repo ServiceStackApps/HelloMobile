@@ -1,5 +1,4 @@
 ﻿using NUnit.Framework;
-using ServiceModel;
 using ServiceStack;
 using ServiceStack.Auth;
 using ServiceStack.Testing;
@@ -17,7 +16,7 @@ namespace Tests.Client
             {
                 var jwtProvider = new JwtAuthProvider
                 {
-                    AuthKeyBase64 = Config.JwtAuthKeyBase64,
+                    AuthKeyBase64 = ServiceModel.Config.JwtAuthKeyBase64,
                     ExpireTokensInDays = 3650
                 };
 

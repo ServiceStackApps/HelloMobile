@@ -18,9 +18,9 @@ namespace Server.HttpListener
         {
             new AppHost()
                 .Init()
-                .Start(Config.ListeningOn);
+                .Start(ServiceModel.Config.ListeningOn);
 
-            Config.BaseUrl.Print();
+            ServiceModel.Config.BaseUrl.Print();
             Console.ReadLine();
         }
     }

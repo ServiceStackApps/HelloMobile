@@ -15,10 +15,10 @@ namespace Client.XamarinForms
     public partial class MainPage : ContentPage
     {
         private static string BaseUrl = Device.RuntimePlatform == Device.Android ?
-            Config.UseAndroidLoopback
+            ServiceModel.Config.UseAndroidLoopback
             : Device.RuntimePlatform == Device.iOS ?
-            Config.UseNetworkIp :
-            Config.BaseUrl;
+                ServiceModel.Config.UseNetworkIp :
+                ServiceModel.Config.BaseUrl;
 
         public IServiceClient CreateClient() => new JsonServiceClient(BaseUrl);
 
@@ -123,7 +123,7 @@ namespace Client.XamarinForms
                 try
                 {
                     var client = (IJsonServiceClient)CreateClient();
-                    var encryptedClient = client.GetEncryptedClient(Config.PublicKeyXml);
+                    var encryptedClient = client.GetEncryptedClient(ServiceModel.Config.PublicKeyXml);
 
                     var response = await encryptedClient.SendAsync(new Hello { Name = "Encrypted Client" });
 

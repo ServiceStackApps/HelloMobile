@@ -1,4 +1,6 @@
-﻿using ServiceModel;
+﻿using System.Threading;
+using System.Threading.Tasks;
+using ServiceModel;
 using ServiceStack;
 using ServiceStack.Auth;
 
@@ -30,7 +32,7 @@ namespace Server
 
         public class CustomCredentialsAuthProvider : CredentialsAuthProvider
         {
-            public override bool TryAuthenticate(IServiceBase authService, string userName, string password)
+            public override async Task<bool> TryAuthenticateAsync(IServiceBase authService, string userName, string password, CancellationToken token=default)
             {
                 return userName == "user" && password == "pass";
             }

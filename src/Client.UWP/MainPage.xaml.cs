@@ -31,7 +31,7 @@ namespace Client.UWP
             InitializeComponent();
         }
 
-        private const string BaseUrl = Config.BaseUrl;
+        private const string BaseUrl = ServiceModel.Config.BaseUrl;
         public IServiceClient CreateClient() => new JsonServiceClient(BaseUrl);
 
         private void btnSync_Click(object sender, RoutedEventArgs e)
@@ -130,7 +130,7 @@ namespace Client.UWP
             try
             {
                 var client = (IJsonServiceClient)CreateClient();
-                var encryptedClient = client.GetEncryptedClient(Config.PublicKeyXml);
+                var encryptedClient = client.GetEncryptedClient(ServiceModel.Config.PublicKeyXml);
 
                 var response = await encryptedClient.SendAsync(new Hello { Name = "Encrypted Client" });
 
